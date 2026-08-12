@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack, Text, chakra } from '@chakra-ui/react';
+import { Box, Container, Heading, Image, SimpleGrid, Stack, Text, chakra } from '@chakra-ui/react';
 import { CopyIcon } from './CopyIcon';
 import { CopyFeedback, CopyIpButton, type CopyHandler, type CopyState } from './CopyIpButton';
 
@@ -60,11 +60,11 @@ export function HeroSection({ copiedButtons, feedbackVisible, onCopy }: HeroSect
                 minH={12}
                 px={6}
                 borderRadius="md"
-                bg="brand.600"
+                bg="teal.600"
                 color="white"
                 fontWeight="bold"
-                _hover={{ bg: 'brand.500' }}
-                _focusVisible={{ outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '3px' }}
+                _hover={{ bg: 'teal.500' }}
+                _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '3px' }}
               >
                 Begin your journey
               </chakra.a>
@@ -80,7 +80,7 @@ export function HeroSection({ copiedButtons, feedbackVisible, onCopy }: HeroSect
                 borderColor="blackAlpha.300"
                 borderRadius="md"
                 _hover={{ bg: 'blackAlpha.100' }}
-                _focusVisible={{ outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '3px' }}
+                _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '3px' }}
               >
                 Read the field guide
               </chakra.a>

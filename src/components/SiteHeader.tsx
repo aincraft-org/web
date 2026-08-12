@@ -47,7 +47,7 @@ export function SiteHeader({ activeSection, copiedButtons, onCopy }: SiteHeaderP
           alignItems="center"
           gap={3}
           flexShrink={0}
-          _focusVisible={{ outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '4px' }}
+          _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '4px' }}
         >
           <chakra.span className="brand-mark-copy" display="grid" lineHeight={1.05}>
             <chakra.span className="brand-mark-word" fontSize="sm" fontWeight="bold" letterSpacing="0.16em">
@@ -92,7 +92,7 @@ export function SiteHeader({ activeSection, copiedButtons, onCopy }: SiteHeaderP
               fontSize: 'sm',
               fontWeight: active || item.isJoin ? 'bold' : 'medium',
               _hover: { bg: active ? 'blackAlpha.200' : 'blackAlpha.100' },
-              _focusVisible: { outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '2px' },
+              _focusVisible: { outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '2px' },
             } as const;
 
             return item.to ? (
@@ -126,9 +126,9 @@ export function SiteHeader({ activeSection, copiedButtons, onCopy }: SiteHeaderP
           color="blackAlpha.700"
           fontSize="sm"
           _hover={{ color: 'blackAlpha.900' }}
-          _focusVisible={{ outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '3px' }}
+          _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '3px' }}
         >
-          <chakra.span className="discord-dot" aria-hidden="true" boxSize={2} borderRadius="full" bg="brand.500" />
+          <chakra.span className="discord-dot" aria-hidden="true" boxSize={2} borderRadius="full" bg="teal.500" />
           <chakra.span>Discord</chakra.span>
         </chakra.a>
       </Flex>

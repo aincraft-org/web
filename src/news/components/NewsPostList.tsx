@@ -16,7 +16,7 @@ function formatDate(isoDate: string): string {
 export function NewsPostList({ posts }: NewsPostListProps) {
   if (!posts.length) {
     return (
-      <Text data-testid="news-empty" color="muted" border="1px dashed" borderColor="line" p={10} textAlign="center">
+      <Text data-testid="news-empty" color="blackAlpha.600" border="1px dashed" borderColor="blackAlpha.300" p={10} textAlign="center">
         No chronicles yet — check back soon.
       </Text>
     );
@@ -32,20 +32,19 @@ export function NewsPostList({ posts }: NewsPostListProps) {
           data-date={post.date}
           p={5}
           border="1px solid"
-          borderColor="line"
+          borderColor="blackAlpha.300"
           borderLeft="3px solid"
-          borderLeftColor="accent.400"
+          borderLeftColor="teal.400"
           borderRadius="lg"
-          bg="ink.800"
         >
           <VStack align="start" gap={1}>
-            <chakra.time dateTime={post.date} color="mint.400" fontFamily="mono" fontSize="xs">
+            <chakra.time dateTime={post.date} color="blackAlpha.500" fontSize="xs">
               {formatDate(post.date)}
             </chakra.time>
-            <Heading as="h2" size="md" color="paper.bright">
+            <Heading as="h2" size="md">
               <RouterLink to={`/news/${post.slug}`}>{post.title}</RouterLink>
             </Heading>
-            <Text color="muted" fontSize="sm">
+            <Text color="blackAlpha.700" fontSize="sm">
               {post.summary}
             </Text>
           </VStack>

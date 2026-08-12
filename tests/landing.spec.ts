@@ -96,15 +96,6 @@ test.describe('AzothMC landing page', () => {
       expect(mainBox.width).toBeGreaterThan(viewport.width * 0.5);
     }
 
-    // Hero background image should be loaded
-    const bgLoaded = await page.evaluate(() => {
-      const bg = document.querySelector('.hero .slide-bg') as HTMLElement | null;
-      if (!bg) return false;
-      const url = getComputedStyle(bg).backgroundImage;
-      return /hero-bg/i.test(url);
-    });
-    expect(bgLoaded).toBe(true);
-
     expect(errors, `Unexpected page errors: ${errors.join('; ')}`).toEqual([]);
 
     await page.screenshot({

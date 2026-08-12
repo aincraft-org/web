@@ -7,7 +7,7 @@ interface SearchFieldProps {
 
 export function SearchField({ value, onChange }: SearchFieldProps) {
   return (
-    <Box as="label" display="grid" gap={1} flexBasis={300} maxWidth={420} color="muted" fontFamily="mono" fontSize="xs" textTransform="uppercase" letterSpacing="0.08em">
+    <Box as="label" display="grid" gap={1} flexBasis={300} maxWidth={420} color="blackAlpha.700" fontSize="xs" textTransform="uppercase" letterSpacing="0.08em">
       <Text as="span" mb={1}>Search packages</Text>
       <Input
         data-testid="store-search"
@@ -21,14 +21,12 @@ export function SearchField({ value, onChange }: SearchFieldProps) {
         minH={11}
         rounded="md"
         border="1px solid"
-        borderColor="line-dim"
-        bg="ink.900"
-        color="paper.bright"
-        _placeholder={{ color: 'paper.muted' }}
-        _hover={{ borderColor: 'accent.400/50' }}
+        borderColor="blackAlpha.300"
+        _placeholder={{ color: 'blackAlpha.500' }}
+        _hover={{ borderColor: 'blackAlpha.500' }}
         _focusVisible={{
-          borderColor: 'accent.400',
-          boxShadow: '0 0 0 1px var(--chakra-colors-accent-400)',
+          borderColor: 'teal.500',
+          boxShadow: '0 0 0 1px var(--chakra-colors-teal-500)',
           outline: 'none',
         }}
       />

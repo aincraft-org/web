@@ -54,7 +54,7 @@ export default function StoreApp() {
       </FlexColumn>
       <ProductGrid packages={filteredPackages} categories={storeCategories} />
       <DeliveryNote />
-      <Text as="p" color="muted" fontSize="sm" textAlign="center" mt={6}>
+      <Text as="p" color="blackAlpha.600" fontSize="sm" textAlign="center" mt={6}>
         The AzothMC store is an independent community project, not affiliated with Mojang or Microsoft.
       </Text>
     </Container>

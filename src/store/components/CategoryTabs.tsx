@@ -29,21 +29,11 @@ export function CategoryTabs({ categories, value, onChange }: CategoryTabsProps)
           px={5}
           minH={11}
           rounded="full"
-          variant="outline"
-          borderColor={active(category.id) ? 'accent.400' : 'line-dim'}
-          bg={active(category.id) ? 'accent.400' : 'transparent'}
-          color={active(category.id) ? 'ink.900' : 'paper.deep'}
+          variant={active(category.id) ? 'solid' : 'outline'}
+          colorScheme="teal"
           fontWeight="bold"
           fontSize="sm"
-          fontFamily="body"
-          letterSpacing="0.02em"
-          transition="all 180ms ease"
-          _hover={{
-            bg: active(category.id) ? 'accent.strong' : 'ink.700',
-            borderColor: active(category.id) ? 'accent.strong' : 'accent.400',
-            color: active(category.id) ? 'ink.900' : 'paper.bright',
-          }}
-          _focusVisible={{ outline: '2px solid', outlineColor: 'accent.400', outlineOffset: '2px' }}
+          _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '2px' }}
         >
           {category.label}
         </Button>
