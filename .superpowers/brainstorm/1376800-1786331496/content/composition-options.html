@@ -1,0 +1,85 @@
+<style>
+  .composition-intro { margin-bottom: 1.1rem; }
+  .composition-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .composition-card { overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 16px; background: #0d141e; cursor: pointer; transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease; }
+  .composition-card:hover { transform: translateY(-4px); border-color: rgba(246,208,138,.8); box-shadow: 0 18px 35px rgba(0,0,0,.24); }
+  .site-preview { min-height: 380px; color: #fff; }
+  .site-preview.a { background: #08111e; }
+  .site-preview.c { background: #10262d; }
+  .preview-nav { display: flex; align-items: center; justify-content: space-between; padding: .75rem .85rem; border-bottom: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.7); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+  .preview-brand { color: #f6d08a; font-family: Georgia, serif; font-size: .9rem; letter-spacing: .04em; }
+  .preview-links { display: flex; gap: .6rem; }
+  .preview-links span:last-child { color: #f6d08a; }
+  .preview-hero { position: relative; min-height: 225px; overflow: hidden; padding: 2.1rem 1rem 1rem; }
+  .a .preview-hero { background: radial-gradient(circle at 76% 28%, rgba(57,156,184,.64), transparent 22%), linear-gradient(125deg, #0b172a 0 42%, #1a3855 42% 67%, #8d482f 67% 100%); }
+  .c .preview-hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: .65rem; align-items: center; background: radial-gradient(circle at 75% 20%, rgba(122,225,204,.7), transparent 18%), linear-gradient(145deg, #102e37 0 46%, #1f5b62 46% 100%); }
+  .preview-kicker { color: rgba(255,255,255,.64); font-size: .56rem; letter-spacing: .13em; text-transform: uppercase; }
+  .preview-title { max-width: 12rem; margin: .45rem 0 .65rem; color: #fff; font-family: Georgia, serif; font-size: 1.75rem; line-height: .95; }
+  .preview-copy { max-width: 13rem; margin: 0 0 .8rem; color: rgba(255,255,255,.7); font-size: .65rem; line-height: 1.45; }
+  .preview-cta { display: inline-block; padding: .45rem .65rem; border-radius: 4px; background: #f6d08a; color: #151821; font-size: .57rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .preview-ghost { display: inline-block; margin-left: .3rem; padding: .4rem .55rem; border: 1px solid rgba(255,255,255,.38); border-radius: 4px; color: rgba(255,255,255,.82); font-size: .57rem; }
+  .preview-character { position: absolute; right: 11%; bottom: 0; width: 84px; height: 145px; border-radius: 45% 45% 12% 12%; background: linear-gradient(180deg, rgba(231,244,255,.9), #5b7fa4 52%, #181e32 53%); box-shadow: 0 0 40px rgba(96,220,239,.25); transform: skew(-6deg); }
+  .preview-character::before { content: ""; position: absolute; left: 19px; top: -33px; width: 48px; height: 52px; border-radius: 50%; background: #cb9569; box-shadow: 18px 10px 0 -11px #d5e6f0; }
+  .preview-character::after { content: ""; position: absolute; right: -28px; top: 12px; width: 34px; height: 90px; border: 3px solid #f6d08a; border-left: 0; transform: rotate(-21deg); }
+  .preview-map { position: relative; min-height: 124px; border: 1px solid rgba(255,255,255,.28); border-radius: 8px; background: radial-gradient(circle at 50% 48%, rgba(250,218,148,.9) 0 3px, transparent 4px), repeating-radial-gradient(ellipse at 50% 48%, transparent 0 20px, rgba(203,244,213,.34) 21px 22px), linear-gradient(145deg, rgba(16,36,45,.2), rgba(173,211,150,.58)); transform: rotate(-5deg); box-shadow: 0 12px 20px rgba(0,0,0,.2); }
+  .preview-map::before, .preview-map::after { content: ""; position: absolute; background: rgba(22,77,75,.65); border-radius: 999px; }
+  .preview-map::before { width: 70%; height: 12px; top: 33%; left: 12%; transform: rotate(28deg); }
+  .preview-map::after { width: 44%; height: 10px; top: 68%; left: 30%; transform: rotate(-18deg); }
+  .preview-stat { position: absolute; right: .85rem; bottom: .85rem; padding: .48rem .6rem; border: 1px solid rgba(255,255,255,.25); border-radius: 6px; background: rgba(6,18,24,.52); color: rgba(255,255,255,.75); font-size: .55rem; }
+  .preview-stat strong { display: block; margin-top: .1rem; color: #f6d08a; font-size: .78rem; }
+  .preview-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: .45rem; padding: .7rem .85rem .85rem; }
+  .preview-tile { min-height: 70px; padding: .55rem; border: 1px solid rgba(255,255,255,.12); border-radius: 6px; background: rgba(255,255,255,.055); }
+  .preview-tile b { display: block; margin-bottom: .25rem; color: #f6d08a; font-size: .62rem; }
+  .preview-tile span { color: rgba(255,255,255,.58); font-size: .55rem; line-height: 1.35; }
+  .composition-copy { padding: 1rem 1rem 1.1rem; }
+  .composition-copy h3 { margin: 0 0 .45rem; color: #fff; font-size: 1rem; }
+  .composition-copy p { margin: 0; color: rgba(255,255,255,.68); font-size: .82rem; line-height: 1.5; }
+  .composition-copy ul { margin: .75rem 0 0; padding-left: 1rem; color: rgba(255,255,255,.55); font-size: .7rem; line-height: 1.55; }
+  @media (max-width: 820px) { .composition-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="composition-intro">
+  <h2>Same world, different site experience</h2>
+  <p class="subtitle">These are intentionally different structures, not just color swaps. Which one better matches how you want people to discover AzothMC?</p>
+</div>
+
+<div class="composition-grid">
+  <div class="composition-card" data-choice="cinematic-campaign" onclick="toggleSelect(this)">
+    <div class="site-preview a">
+      <div class="preview-nav"><span class="preview-brand">AZOTHMC</span><span class="preview-links"><span>World</span><span>Classes</span><span>Community</span><span>Play</span></span></div>
+      <div class="preview-hero">
+        <div class="preview-kicker">A living Minecraft RPG</div>
+        <div class="preview-title">The frontier is waking.</div>
+        <p class="preview-copy">Enter a handcrafted realm of quests, guilds, and impossible creatures.</p>
+        <span class="preview-cta">Enter Azoth</span><span class="preview-ghost">Watch trailer</span>
+        <div class="preview-character" aria-hidden="true"></div>
+        <div class="preview-stat">PLAYERS ONLINE<strong>1,284</strong></div>
+      </div>
+      <div class="preview-strip"><div class="preview-tile"><b>01 / Discover</b><span>A cinematic world intro.</span></div><div class="preview-tile"><b>02 / Choose</b><span>Classes and player fantasy.</span></div><div class="preview-tile"><b>03 / Join</b><span>IP + one clear CTA.</span></div></div>
+    </div>
+    <div class="composition-copy">
+      <h3>A — Cinematic Campaign</h3>
+      <p>A focused first impression. The hero owns the page, then the story unfolds as a campaign: world, classes, quests, final server join.</p>
+      <ul><li>Best for selling the feeling of adventure</li><li>Large art, fewer but stronger modules</li><li>CTA and server status always visible</li></ul>
+    </div>
+  </div>
+
+  <div class="composition-card" data-choice="exploration-hub" onclick="toggleSelect(this)">
+    <div class="site-preview c">
+      <div class="preview-nav"><span class="preview-brand">AZOTHMC</span><span class="preview-links"><span>Map</span><span>Builds</span><span>Quests</span><span>Guilds</span></span></div>
+      <div class="preview-hero">
+        <div><div class="preview-kicker">Open world · connected</div><div class="preview-title">Choose a path. Shape the realm.</div><p class="preview-copy">A living hub for explorers, builders, traders, and raid parties.</p><span class="preview-cta">Explore the map</span></div>
+        <div class="preview-map" aria-hidden="true"></div>
+        <div class="preview-stat">WORLD EVENTS<strong>04 active</strong></div>
+      </div>
+      <div class="preview-strip"><div class="preview-tile"><b>Explore</b><span>Regions, secrets, landmarks.</span></div><div class="preview-tile"><b>Build</b><span>Classes, gear, professions.</span></div><div class="preview-tile"><b>Connect</b><span>Guilds, Discord, events.</span></div></div>
+    </div>
+    <div class="composition-copy">
+      <h3>C — Exploration Hub</h3>
+      <p>A living-service homepage. The first screen introduces the world, then immediately gives visitors systems to browse instead of one long cinematic scroll.</p>
+      <ul><li>Best for showing depth and replayability</li><li>Map/status modules make it feel like a real game portal</li><li>Easy to grow with news, events, and guides</li></ul>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:1.2rem">Click A or C. If you want a hybrid, say which pieces: for example, “A hero + C map and events.”</p>

@@ -1,0 +1,296 @@
+- region "Wynncraft Website" [ref=e5]:
+  - navigation [ref=e7]:
+    - generic [ref=e8]:
+      - link "Wynn Navigation Button" [ref=e9] [cursor=pointer]:
+        - /url: /fruma
+        - generic "Wynn Navigation Button" [ref=e12]
+      - link "Wynn Navigation Button":
+        - /url: /
+        - generic:
+          - generic:
+            - generic "Wynn Navigation Button":
+              - paragraph:
+                - generic: 
+                - text: home
+      - link [ref=e13] [cursor=pointer]:
+        - /url: /news
+        - generic "Wynn Navigation Button" [ref=e16]:
+          - paragraph [ref=e17]:
+            - generic [ref=e18]: 
+            - text: news
+      - generic "Wynn Navigation Button" [ref=e22]:
+        - list [ref=e23]:
+          - listitem [ref=e24]:
+            - link " store" [ref=e25] [cursor=pointer]:
+              - /url: /store
+              - generic [ref=e26]: 
+              - text: store
+          - listitem [ref=e27]:
+            - link "Ranks" [ref=e28] [cursor=pointer]:
+              - /url: /store/ranks
+          - listitem [ref=e32]:
+            - link "Crates" [ref=e33] [cursor=pointer]:
+              - /url: /store/crates
+          - listitem [ref=e37]:
+            - link "Shares" [ref=e38] [cursor=pointer]:
+              - /url: /store/shares
+          - listitem [ref=e42]:
+            - link "Silverbull" [ref=e43] [cursor=pointer]:
+              - /url: /store/silverbull
+          - listitem [ref=e47]:
+            - link "Pets" [ref=e48] [cursor=pointer]:
+              - /url: /store/pets
+          - listitem [ref=e52]:
+            - link "Bombs" [ref=e53] [cursor=pointer]:
+              - /url: /store/bombs
+          - listitem [ref=e57]:
+            - link "Gift Cards" [ref=e58] [cursor=pointer]:
+              - /url: /store/giftCards
+      - generic "Wynn Navigation Button" [ref=e65]:
+        - list [ref=e66]:
+          - listitem [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: 
+              - text: community
+          - listitem [ref=e70]:
+            - link "Discord" [ref=e71] [cursor=pointer]:
+              - /url: /community/discord
+          - listitem [ref=e75]:
+            - link "Bedrock" [ref=e76] [cursor=pointer]:
+              - /url: /community/bedrock
+          - listitem [ref=e80]:
+            - link "Wiki" [ref=e81] [cursor=pointer]:
+              - /url: /community/wiki
+          - listitem [ref=e85]:
+            - link "Forums" [ref=e86] [cursor=pointer]:
+              - /url: https://forums.wynncraft.com/
+          - listitem [ref=e90]:
+            - link "Ban Appeals" [ref=e91] [cursor=pointer]:
+              - /url: /community/ban-appeals
+          - listitem [ref=e95]:
+            - link "FAQ" [ref=e96] [cursor=pointer]:
+              - /url: /community/faq
+          - listitem [ref=e100]:
+            - link "Developers" [ref=e101] [cursor=pointer]:
+              - /url: /community/developers
+      - link [ref=e105] [cursor=pointer]:
+        - /url: /stats
+        - generic "Wynn Navigation Button" [ref=e108]:
+          - paragraph [ref=e109]:
+            - generic [ref=e110]: 
+            - text: stats
+      - link [ref=e111] [cursor=pointer]:
+        - /url: /help/item-guide
+        - generic "Wynn Navigation Button" [ref=e114]:
+          - paragraph [ref=e115]:
+            - generic [ref=e116]: 
+            - text: items
+      - link [ref=e117] [cursor=pointer]:
+        - /url: /help/classes
+        - generic "Wynn Navigation Button" [ref=e120]:
+          - paragraph [ref=e121]:
+            - generic [ref=e122]: 
+            - text: classes
+      - link [ref=e123] [cursor=pointer]:
+        - /url: https://map.wynncraft.com/
+        - generic "Wynn Navigation Button" [ref=e126]:
+          - paragraph [ref=e127]:
+            - generic [ref=e128]: 
+            - text: map
+    - generic [ref=e130]:
+      - link "Wynncraft's discord" [ref=e131] [cursor=pointer]:
+        - /url: https://discord.gg/yJkSQwp
+        - generic [ref=e132]: 
+      - link "Wynncraft's youtube" [ref=e133] [cursor=pointer]:
+        - /url: https://www.youtube.com/channel/UC-ZXrUQOrtYcqAGx9F9IEeQ
+        - generic [ref=e134]: 
+      - link "Wynncraft's twitter" [ref=e135] [cursor=pointer]:
+        - /url: https://twitter.com/Wynncraft
+        - generic [ref=e136]: 
+      - link "Wynncraft's reddit" [ref=e137] [cursor=pointer]:
+        - /url: https://www.reddit.com/r/WynnCraft/
+        - generic [ref=e138]: 
+      - link "Wynncraft's tiktok" [ref=e139] [cursor=pointer]:
+        - /url: https://www.tiktok.com/@wynncraftofficial
+        - generic [ref=e140]: 
+    - paragraph [ref=e143] [cursor=pointer]:
+      - generic [ref=e144]: 
+    - generic [ref=e148]:
+      - paragraph [ref=e149]: play.wynncraft.com
+      - generic [ref=e150]: 
+  - generic [ref=e151]:
+    - generic "Wynn Navigation Button" [ref=e155] [cursor=pointer]:
+      - paragraph [ref=e156]:
+        - generic [ref=e157]: 
+    - paragraph [ref=e159] [cursor=pointer]:
+      - generic [ref=e160]: 
+  - generic:
+    - generic:
+      - generic:
+        - link "Wynn Navigation Button":
+          - /url: /fruma
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button"
+        - link "Wynn Navigation Button":
+          - /url: /
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: home
+        - link "Wynn Navigation Button":
+          - /url: /news
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: news
+        - generic:
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - list:
+                  - listitem:
+                    - link " store":
+                      - /url: /store
+                      - generic: 
+                      - text: store
+                  - listitem:
+                    - link "Ranks":
+                      - /url: /store/ranks
+                  - listitem:
+                    - link "Crates":
+                      - /url: /store/crates
+                  - listitem:
+                    - link "Shares":
+                      - /url: /store/shares
+                  - listitem:
+                    - link "Silverbull":
+                      - /url: /store/silverbull
+                  - listitem:
+                    - link "Pets":
+                      - /url: /store/pets
+                  - listitem:
+                    - link "Bombs":
+                      - /url: /store/bombs
+                  - listitem:
+                    - link "Gift Cards":
+                      - /url: /store/giftCards
+        - generic:
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - list:
+                  - listitem:
+                    - generic:
+                      - generic: 
+                      - text: community
+                  - listitem:
+                    - link "Discord":
+                      - /url: /community/discord
+                  - listitem:
+                    - link "Bedrock":
+                      - /url: /community/bedrock
+                  - listitem:
+                    - link "Wiki":
+                      - /url: /community/wiki
+                  - listitem:
+                    - link "Forums":
+                      - /url: https://forums.wynncraft.com/
+                  - listitem:
+                    - link "Ban Appeals":
+                      - /url: /community/ban-appeals
+                  - listitem:
+                    - link "FAQ":
+                      - /url: /community/faq
+                  - listitem:
+                    - link "Developers":
+                      - /url: /community/developers
+        - link "Wynn Navigation Button":
+          - /url: /stats
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: stats
+        - link "Wynn Navigation Button":
+          - /url: /help/item-guide
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: items
+        - link "Wynn Navigation Button":
+          - /url: /help/classes
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: classes
+        - link "Wynn Navigation Button":
+          - /url: https://map.wynncraft.com/
+          - generic:
+            - generic:
+              - generic "Wynn Navigation Button":
+                - paragraph:
+                  - generic: 
+                  - text: map
+      - generic:
+        - generic:
+          - generic:
+            - link "Wynncraft's discord":
+              - /url: https://discord.gg/yJkSQwp
+              - generic: 
+            - link "Wynncraft's youtube":
+              - /url: https://www.youtube.com/channel/UC-ZXrUQOrtYcqAGx9F9IEeQ
+              - generic: 
+            - link "Wynncraft's twitter":
+              - /url: https://twitter.com/Wynncraft
+              - generic: 
+            - link "Wynncraft's reddit":
+              - /url: https://www.reddit.com/r/WynnCraft/
+              - generic: 
+            - link "Wynncraft's tiktok":
+              - /url: https://www.tiktok.com/@wynncraftofficial
+              - generic: 
+  - region "Page Content" [ref=e161]:
+    - generic "Homepage" [ref=e163]:
+      - generic [ref=e164]:
+        - generic:
+          - generic:
+            - generic: 
+            - generic:
+              - generic [ref=e167] [cursor=pointer]: 
+              - region "Scroll position" [ref=e170]:
+                - generic [ref=e171]: 
+                - generic [ref=e173]: 
+                - generic [ref=e175]: 
+                - generic [ref=e177]: 
+                - generic [ref=e179]: 
+                - generic [ref=e181]: 
+                - generic [ref=e183]: 
+              - generic [ref=e185] [cursor=pointer]: 
+        - region "Scroll Content" [ref=e187]:
+          - region "Full page transition handler"
+  - generic [ref=e191]:
+    - generic [ref=e192]:
+      - link "Business Contact" [ref=e193] [cursor=pointer]:
+        - /url: mailto:salted@wynncraft.com
+      - link "Billing Support" [ref=e194] [cursor=pointer]:
+        - /url: mailto:support@wynncraft.com
+      - link "Report a bug" [ref=e195] [cursor=pointer]:
+        - /url: " https://forums.wynncraft.com/forums/bug-reports.145/ "
+      - link "Terms of Service" [ref=e196] [cursor=pointer]:
+        - /url: /tos
+      - link "API Terms" [ref=e197] [cursor=pointer]:
+        - /url: /api-terms
+      - link "Privacy Policy" [ref=e198] [cursor=pointer]:
+        - /url: /privacy
+      - generic [ref=e199]: Settings
+    - paragraph [ref=e202]: Copyright Wynncraft © 2013 - 2026. Unaffiliated with Mojang AB or the Microsoft Corporation.

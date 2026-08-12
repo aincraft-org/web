@@ -1,0 +1,220 @@
+<style>
+  .direction-intro {
+    margin-bottom: 1.25rem;
+  }
+
+  .direction-intro strong {
+    color: #f6d08a;
+  }
+
+  .direction-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .direction-card {
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,.16);
+    border-radius: 16px;
+    background: #101721;
+    cursor: pointer;
+    transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+  }
+
+  .direction-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(246,208,138,.8);
+    box-shadow: 0 18px 35px rgba(0,0,0,.24);
+  }
+
+  .direction-art {
+    position: relative;
+    min-height: 190px;
+    padding: 1rem;
+    overflow: hidden;
+  }
+
+  .direction-art::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,.12), transparent 45%, rgba(0,0,0,.35));
+    pointer-events: none;
+  }
+
+  .direction-art.midnight {
+    background: radial-gradient(circle at 72% 24%, rgba(81,181,198,.75), transparent 17%), linear-gradient(135deg, #07111f 0 40%, #172d4b 40% 66%, #b56b3b 66% 100%);
+  }
+
+  .direction-art.ember {
+    background: radial-gradient(circle at 28% 26%, #f2b263 0 8%, transparent 9%), linear-gradient(145deg, #3a161f 0 38%, #8b3f37 38% 63%, #d5985b 63% 100%);
+  }
+
+  .direction-art.arcane {
+    background: radial-gradient(circle at 72% 25%, rgba(133,237,216,.9), transparent 15%), linear-gradient(145deg, #102d36 0 42%, #286475 42% 66%, #a8c28b 66% 100%);
+  }
+
+  .art-eyebrow, .art-title, .art-button, .art-orbit, .art-rune {
+    position: relative;
+    z-index: 1;
+  }
+
+  .art-eyebrow {
+    display: inline-block;
+    padding: .25rem .45rem;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 999px;
+    color: rgba(255,255,255,.82);
+    font-size: .62rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .art-title {
+    max-width: 11rem;
+    margin: 3rem 0 .7rem;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 1.75rem;
+    line-height: .96;
+  }
+
+  .art-button {
+    display: inline-block;
+    padding: .45rem .7rem;
+    border-radius: 5px;
+    background: #f6d08a;
+    color: #1e1820;
+    font-size: .7rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .art-orbit {
+    position: absolute;
+    right: 13%;
+    bottom: 12%;
+    width: 74px;
+    height: 74px;
+    border: 1px solid rgba(255,255,255,.62);
+    border-radius: 50%;
+    transform: rotate(-24deg);
+  }
+
+  .art-orbit::before, .art-orbit::after {
+    content: "";
+    position: absolute;
+    inset: 12px -14px;
+    border: 1px solid rgba(255,255,255,.4);
+    border-radius: 50%;
+    transform: rotate(62deg);
+  }
+
+  .art-orbit::after {
+    inset: -14px 12px;
+    transform: rotate(28deg);
+  }
+
+  .art-rune {
+    position: absolute;
+    right: 16%;
+    top: 29%;
+    color: rgba(255,255,255,.65);
+    font-size: 2.6rem;
+    font-family: Georgia, serif;
+  }
+
+  .direction-copy {
+    padding: 1rem 1rem 1.1rem;
+  }
+
+  .direction-copy h3 {
+    margin: 0 0 .45rem;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .direction-copy p {
+    margin: 0;
+    color: rgba(255,255,255,.68);
+    font-size: .82rem;
+    line-height: 1.5;
+  }
+
+  .direction-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .35rem;
+    margin-top: .8rem;
+  }
+
+  .direction-tags span {
+    padding: .25rem .45rem;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 999px;
+    color: rgba(255,255,255,.58);
+    font-size: .65rem;
+  }
+
+  @media (max-width: 820px) {
+    .direction-grid { grid-template-columns: 1fr; }
+    .direction-art { min-height: 155px; }
+    .art-title { margin-top: 2rem; }
+  }
+</style>
+
+<div class="direction-intro">
+  <h2>Which RPG direction feels right?</h2>
+  <p class="subtitle">The current page leans hard into carved wood, parchment, and Minecraft-server UI. These options keep the adventure promise but move AzothMC toward a polished RPG game site. <strong>Click one to choose a starting mood.</strong></p>
+</div>
+
+<div class="direction-grid">
+  <div class="direction-card" data-choice="midnight-campaign" onclick="toggleSelect(this)">
+    <div class="direction-art midnight">
+      <span class="art-eyebrow">Season zero · live</span>
+      <div class="art-title">The frontier is waking.</div>
+      <span class="art-button">Enter Azoth</span>
+      <span class="art-orbit" aria-hidden="true"></span>
+      <span class="art-rune" aria-hidden="true">✦</span>
+    </div>
+    <div class="direction-copy">
+      <h3>A. Midnight Campaign</h3>
+      <p>Cinematic dark navy, ember orange, and cool cyan. Hero art does the selling; UI becomes restrained, premium, and game-launcher-like.</p>
+      <div class="direction-tags"><span>cinematic</span><span>high contrast</span><span>premium MMO</span></div>
+    </div>
+  </div>
+
+  <div class="direction-card" data-choice="ember-guildhall" onclick="toggleSelect(this)">
+    <div class="direction-art ember">
+      <span class="art-eyebrow">Chronicle 01 · story</span>
+      <div class="art-title">Make a legend of your own.</div>
+      <span class="art-button">Begin the chronicle</span>
+      <span class="art-orbit" aria-hidden="true"></span>
+      <span class="art-rune" aria-hidden="true">◈</span>
+    </div>
+    <div class="direction-copy">
+      <h3>B. Ember Guildhall</h3>
+      <p>Warm crimson, parchment cream, and brass. It keeps the RPG storytelling but replaces blocky Minecraft motifs with editorial, guild-record styling.</p>
+      <div class="direction-tags"><span>story-first</span><span>tactile</span><span>guild identity</span></div>
+    </div>
+  </div>
+
+  <div class="direction-card" data-choice="arcane-frontier" onclick="toggleSelect(this)">
+    <div class="direction-art arcane">
+      <span class="art-eyebrow">Open world · connected</span>
+      <div class="art-title">Choose a path. Shape the realm.</div>
+      <span class="art-button">Explore the map</span>
+      <span class="art-orbit" aria-hidden="true"></span>
+      <span class="art-rune" aria-hidden="true">⌁</span>
+    </div>
+    <div class="direction-copy">
+      <h3>C. Arcane Frontier</h3>
+      <p>Mist teal, moss, and soft gold. A modern live-service layout that foregrounds map discovery, classes, events, and a strong community pulse.</p>
+      <div class="direction-tags"><span>modern RPG</span><span>exploration</span><span>community</span></div>
+    </div>
+  </div>
+</div>
+
+<p class="subtitle" style="margin-top:1.3rem">Take a look and click the option that feels closest to the site you want. You can also tell me what to mix between them.</p>
