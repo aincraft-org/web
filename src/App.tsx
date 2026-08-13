@@ -9,6 +9,7 @@ import LandingPage from './LandingPage';
 import NewsArticle from './news/NewsArticle';
 import NewsIndex from './news/NewsIndex';
 import StoreApp from './store/StoreApp';
+import ForumApp from './forum/ForumApp';
 
 const FEEDBACK_DURATION = 2500;
 
@@ -50,7 +51,7 @@ export default function App() {
     return true;
   }, []);
 
-  const headerSection = location.pathname.startsWith('/news') ? 'news' : location.pathname === '/store' ? 'store' : activeSection;
+  const headerSection = location.pathname.startsWith('/news') ? 'news' : location.pathname === '/store' ? 'store' : location.pathname.startsWith('/forum') ? 'forum' : activeSection;
 
   return (
     <>
@@ -92,6 +93,7 @@ export default function App() {
           <Route path="/store" element={<StoreApp />} />
           <Route path="/news" element={<NewsIndex />} />
           <Route path="/news/:slug" element={<NewsArticle />} />
+          <Route path="/forum" element={<ForumApp />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </chakra.main>

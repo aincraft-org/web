@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack, Text, chakra } from '@chakra-ui/react';
+import { Box, Container, Heading, Image, SimpleGrid, Stack, Text, chakra } from '@chakra-ui/react';
 import { CopyIcon } from './CopyIcon';
 import { CopyFeedback, CopyIpButton, type CopyHandler, type CopyState } from './CopyIpButton';
 
@@ -19,6 +19,16 @@ export function HeroSection({ copiedButtons, feedbackVisible, onCopy }: HeroSect
       overflow="hidden"
       py={{ base: 12, md: 20 }}
     >
+      <Box
+        className="slide-bg"
+        position="absolute"
+        inset={0}
+        backgroundImage="url('/assets/hero-bg.jpg')"
+        backgroundSize="cover"
+        backgroundPosition="center"
+        opacity={0.14}
+        aria-hidden="true"
+      />
       <Container className="hero-stage" maxW="1500px" minH="inherit" position="relative">
         <SimpleGrid
           className="hero-grid"

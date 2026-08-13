@@ -33,6 +33,7 @@ export const navItems: NavItem[] = [
   { href: '#endgame', section: 'endgame', index: '05', label: 'Endgame', ariaLabel: 'Endgame' },
   { to: '/store', section: 'store', index: 'SHOP', label: 'Store', ariaLabel: 'Store' },
   { to: '/news', section: 'news', index: 'NEWS', label: 'News', ariaLabel: 'News' },
+  { to: '/forum', section: 'forum', index: 'TALK', label: 'Forum', ariaLabel: 'Forum' },
   {
     href: '#join',
     section: 'join',

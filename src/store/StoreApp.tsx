@@ -4,6 +4,7 @@ import { Box, Container, Text } from '@chakra-ui/react';
 import { storeCategories, storePackages, validateCatalog, type CategoryId } from './catalog';
 import { CategoryTabs } from './components/CategoryTabs';
 import { DeliveryNote } from './components/DeliveryNote';
+import { MarketplacePanel } from './components/MarketplacePanel';
 import { ProductGrid } from './components/ProductGrid';
 import { SearchField } from './components/SearchField';
 import { StoreHero } from './components/StoreHero';
@@ -53,6 +54,7 @@ export default function StoreApp() {
         <SearchField value={query} onChange={setQuery} />
       </FlexColumn>
       <ProductGrid packages={filteredPackages} categories={storeCategories} />
+      <MarketplacePanel />
       <DeliveryNote />
       <Text as="p" color="muted" fontSize="sm" textAlign="center" mt={6}>
         The AzothMC store is an independent community project, not affiliated with Mojang or Microsoft.
