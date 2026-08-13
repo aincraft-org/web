@@ -64,8 +64,8 @@ export default function App() {
         zIndex={100}
         px={3}
         py={2}
-        bg="accent.400"
-        color="ink.900"
+        bg="gray.800"
+        color="white"
         borderRadius="md"
         transform="translateY(-150%)"
         _focus={{ transform: 'translateY(0)' }}

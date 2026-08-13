@@ -16,14 +16,14 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
         justify="center"
         minH="320px"
         border="1px dashed"
-        borderColor="line"
+        borderColor="blackAlpha.300"
         rounded="lg"
         p={10}
         textAlign="center"
       >
         <Text fontSize="4xl">🗝️</Text>
-        <Heading as="p" size="md" color="paper.bright">No perks match.</Heading>
-        <Text color="muted" fontSize="sm">Try a different search or category.</Text>
+        <Heading as="p" size="md">No perks match.</Heading>
+        <Text color="blackAlpha.600" fontSize="sm">Try a different search or category.</Text>
       </VStack>
     );
   }
@@ -55,18 +55,14 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
             minW={0}
             overflow="hidden"
             border="1px solid"
-            borderColor={storePackage.featured ? 'accent.400/60' : 'line'}
+            borderColor={storePackage.featured ? 'teal.400' : 'blackAlpha.300'}
             rounded="lg"
-            bg="ink.800"
-            boxShadow="md"
-            transition="all 180ms ease"
-            _hover={{ borderColor: 'accent.400', transform: 'translateY(-2px)', boxShadow: 'lg' }}
           >
             <Box
               position="relative"
               h={{ base: '190px', md: '210px' }}
               overflow="hidden"
-              bg="ink.950"
+              bg="blackAlpha.100"
             >
               <Image
                 data-testid="product-image"
@@ -76,15 +72,6 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
                 h="100%"
                 objectFit={isTransparentArtwork ? 'contain' : 'cover'}
                 p={isTransparentArtwork ? 5 : 0}
-              />
-              <Box
-                position="absolute"
-                inset={0}
-                pointerEvents="none"
-                bgGradient="to-t"
-                gradientFrom="ink.800"
-                gradientTo="transparent"
-                opacity={isTransparentArtwork ? 0.35 : 0.8}
               />
               <Flex
                 position="absolute"
@@ -101,11 +88,9 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
                   px={2}
                   py={1}
                   rounded="sm"
-                  bg="rgba(7, 19, 22, 0.82)"
-                  color="paper.bright"
-                  fontFamily="mono"
+                  bg="blackAlpha.700"
+                  color="white"
                   fontSize="2xs"
-                  letterSpacing="0.08em"
                   textTransform="uppercase"
                 >
                   {categoryLabels.get(storePackage.category)}
@@ -117,12 +102,10 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
                     px={2}
                     py={1}
                     rounded="sm"
-                    bg="accent.400"
-                    color="ink.900"
-                    fontFamily="mono"
+                    bg="teal.500"
+                    color="white"
                     fontSize="2xs"
                     fontWeight="bold"
-                    letterSpacing="0.06em"
                     textTransform="uppercase"
                   >
                     ★ Featured
@@ -132,10 +115,10 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
             </Box>
 
             <Box display="flex" flexDirection="column" flex={1} p={5}>
-              <Heading as="h2" size="md" color="paper.bright" lineHeight="shorter">
+              <Heading as="h2" size="md" lineHeight="shorter">
                 {storePackage.name}
               </Heading>
-              <Text color="muted" fontSize="sm" mt={2}>
+              <Text color="blackAlpha.700" fontSize="sm" mt={2}>
                 {storePackage.description}
               </Text>
               <List.Root
@@ -146,11 +129,10 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
                 m={0}
                 p={0}
                 mt={4}
-                color="paper.deep"
               >
                 {storePackage.perks.map((perk) => (
                   <List.Item key={perk} display="flex" alignItems="center" gap={2}>
-                    <Box aria-hidden="true" color="accent.400" fontSize="xs">▸</Box>
+                    <Box aria-hidden="true" color="teal.500" fontSize="xs">▸</Box>
                     {perk}
                   </List.Item>
                 ))}
@@ -158,10 +140,10 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
 
               <Flex mt="auto" pt={5} align="end" justify="space-between" gap={3}>
                 <Box>
-                  <Text color="paper.muted" fontSize="xs" fontFamily="mono" textTransform="uppercase" letterSpacing="0.1em">
+                  <Text color="blackAlpha.600" fontSize="xs" textTransform="uppercase" letterSpacing="0.1em">
                     Price
                   </Text>
-                  <Text color="paper.bright" fontSize="2xl" fontWeight="bold" fontFamily="heading" lineHeight="shorter">
+                  <Text fontSize="2xl" fontWeight="bold" lineHeight="shorter">
                     ${storePackage.price.toFixed(2)}
                   </Text>
                 </Box>
@@ -177,14 +159,13 @@ export function ProductGrid({ packages, categories }: ProductGridProps) {
                   minH={11}
                   px={5}
                   rounded="md"
-                  bg="accent.400"
-                  color="ink.900"
+                  bg="teal.600"
+                  color="white"
                   fontWeight="bold"
                   fontSize="sm"
                   flexShrink={0}
-                  transition="all 180ms ease"
-                  _hover={{ bg: 'accent.strong', transform: 'translateY(-1px)', boxShadow: 'md' }}
-                  _focusVisible={{ outline: '2px solid', outlineColor: 'accent.400', outlineOffset: '2px' }}
+                  _hover={{ bg: 'teal.500' }}
+                  _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '2px' }}
                 >
                   Buy now
                 </chakra.a>

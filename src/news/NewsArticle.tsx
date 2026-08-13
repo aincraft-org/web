@@ -26,7 +26,7 @@ export default function NewsArticle() {
           subtitle="This chronicle does not exist — it may have been moved."
         />
         <Stack align="start" mt={8} data-testid="news-not-found">
-          <Text color="muted" fontSize="sm">
+          <Text color="blackAlpha.600" fontSize="sm">
             <RouterLink to="/news">Back to all news</RouterLink>
           </Text>
         </Stack>
@@ -38,7 +38,7 @@ export default function NewsArticle() {
     <Box as="section" maxWidth="container.lg" mx="auto" px={{ base: 4, md: 8 }} py={{ base: 8, md: 14 }}>
       <NewsHero eyebrow="AZOTHMC / CHRONICLES" title={post.title} subtitle={formatDate(post.date)} />
       <Box as="header" mt={8}>
-        <Heading as="h2" size="2xl" color="paper.bright" display="none" aria-hidden="true">{post.title}</Heading>
+        <Heading as="h2" size="2xl" display="none" aria-hidden="true">{post.title}</Heading>
       </Box>
       <ArticleBody body={post.body} />
     </Box>

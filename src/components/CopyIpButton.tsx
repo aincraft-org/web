@@ -53,11 +53,11 @@ export function CopyIpButton({
       py={primary ? 2 : 1}
       border={primary ? '1px solid' : 'none'}
       borderRadius="md"
-      bg={primary ? 'brand.600' : 'transparent'}
+      bg={primary ? 'teal.600' : 'transparent'}
       color="inherit"
       cursor="pointer"
-      _hover={{ bg: primary ? 'brand.500' : 'blackAlpha.100' }}
-      _focusVisible={{ outline: '2px solid', outlineColor: 'brand.500', outlineOffset: '2px' }}
+      _hover={{ bg: primary ? 'teal.500' : 'blackAlpha.100' }}
+      _focusVisible={{ outline: '2px solid', outlineColor: 'teal.500', outlineOffset: '2px' }}
     >
       {children}
     </chakra.button>
