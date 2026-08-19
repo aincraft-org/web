@@ -1,7 +1,7 @@
-//! AzothMC item marketplace API server.
+//! AzothMC Rust web application.
 //!
-//! Read-only axum service exposing seeded marketplace data for the `/store`
-//! view. Binds to `127.0.0.1:8787` by default and honors `MARKET_ADDR`.
+//! Server-rendered routes and read-only marketplace API. Binds to
+//! `127.0.0.1:8787` by default and honors `MARKET_ADDR`.
 
 use std::net::SocketAddr;
 use std::sync::Arc;
@@ -16,7 +16,11 @@ use axum::{
 use serde::Deserialize;
 use tower_http::cors::CorsLayer;
 
+mod forum;
 mod market;
+mod news;
+mod site;
+mod store;
 
 use market::{ItemListResponse, MarketRepo, TrendRange, TrendResponse};
 
@@ -60,7 +64,9 @@ async fn get_item(
         Some(item) => Ok(Json(item.clone())),
         None => Err((
             StatusCode::NOT_FOUND,
-            Json(ApiError { error: "item_not_found" }),
+            Json(ApiError {
+                error: "item_not_found",
+            }),
         )),
     }
 }
@@ -82,22 +88,23 @@ async fn item_trends(
         _ => {
             return Err((
                 StatusCode::BAD_REQUEST,
-                Json(ApiError { error: "unsupported_range" }),
+                Json(ApiError {
+                    error: "unsupported_range",
+                }),
             )
                 .into_response())
         }
     };
 
-    let points = state
-        .repo
-        .trends(&slug, range)
-        .ok_or_else(|| {
-            (
-                StatusCode::NOT_FOUND,
-                Json(ApiError { error: "item_not_found" }),
-            )
-                .into_response()
-        })?;
+    let points = state.repo.trends(&slug, range).ok_or_else(|| {
+        (
+            StatusCode::NOT_FOUND,
+            Json(ApiError {
+                error: "item_not_found",
+            }),
+        )
+            .into_response()
+    })?;
 
     Ok(Json(TrendResponse {
         slug,
@@ -115,6 +122,12 @@ fn build_router(state: AppState) -> Router {
         .allow_credentials(false);
 
     Router::new()
+        .route("/", get(site::landing_page))
+        .route("/news", get(news::index))
+        .route("/news/{slug}", get(news::article))
+        .route("/store", get(store::index))
+        .route("/forum", get(forum::index))
+        .route("/assets/{*path}", get(site::static_file))
         .route("/healthz", get(healthz))
         .route("/api/v1/items", get(list_items))
         .route("/api/v1/items/{slug}", get(get_item))
@@ -175,6 +188,48 @@ mod tests {
         (status, json)
     }
 
+    #[tokio::test]
+    async fn landing_page_renders_html() {
+        let response = test_app()
+            .oneshot(Request::builder().uri("/").body(Body::empty()).unwrap())
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(
+            response.headers().get(header::CONTENT_TYPE).unwrap(),
+            "text/html; charset=utf-8"
+        );
+        let body = response.into_body().collect().await.unwrap().to_bytes();
+        let html = String::from_utf8(body.to_vec()).unwrap();
+        for marker in [
+            "AzothMC",
+            "play.azothmc.com",
+            "/store",
+            "/news",
+            "/forum",
+            "id=\"hero\"",
+            "id=\"intro\"",
+            "id=\"world\"",
+            "id=\"loot\"",
+            "id=\"quests\"",
+            "id=\"endgame\"",
+        ] {
+            assert!(html.contains(marker), "landing page missing {marker}");
+        }
+    }
+    #[tokio::test]
+    async fn missing_asset_is_not_found() {
+        let response = test_app()
+            .oneshot(
+                Request::builder()
+                    .uri("/assets/does-not-exist.txt")
+                    .body(Body::empty())
+                    .unwrap(),
+            )
+            .await
+            .unwrap();
+        assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    }
     #[tokio::test]
     async fn healthz_returns_ok() {
         let (status, json) = get_json(&test_app(), "/healthz").await;
@@ -256,8 +311,7 @@ mod tests {
 
     #[tokio::test]
     async fn unknown_item_trends_returns_404_before_range_check() {
-        let (status, json) =
-            get_json(&test_app(), "/api/v1/items/nope/trends?range=24h").await;
+        let (status, json) = get_json(&test_app(), "/api/v1/items/nope/trends?range=24h").await;
         assert_eq!(status, StatusCode::NOT_FOUND);
         assert_eq!(json, serde_json::json!({ "error": "item_not_found" }));
     }
@@ -273,8 +327,7 @@ mod tests {
     #[tokio::test]
     async fn unsupported_range_and_unknown_slug_returns_400_first() {
         // Range validation happens before slug lookup by design.
-        let (status, json) =
-            get_json(&test_app(), "/api/v1/items/nope/trends?range=7d").await;
+        let (status, json) = get_json(&test_app(), "/api/v1/items/nope/trends?range=7d").await;
         assert_eq!(status, StatusCode::BAD_REQUEST);
         assert_eq!(json, serde_json::json!({ "error": "unsupported_range" }));
     }

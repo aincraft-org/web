@@ -147,27 +147,59 @@ impl TrendRepo {
 
         // Emberheart Core: steady climb over 24h (+7.4% vs 24h ago); the
         // oldest sample is chosen so `change_24h` rounds to 7.4.
-        push_hours(&mut repo, "emberheart", 24, &[1714, 1715, 1724, 1730, 1732, 1738, 1740,
-            1745, 1750, 1752, 1758, 1762, 1770, 1776, 1780, 1784, 1790, 1792, 1798, 1802,
-            1810, 1812, 1820, NB_EMBERS]);
+        push_hours(
+            &mut repo,
+            "emberheart",
+            24,
+            &[
+                1714, 1715, 1724, 1730, 1732, 1738, 1740, 1745, 1750, 1752, 1758, 1762, 1770, 1776,
+                1780, 1784, 1790, 1792, 1798, 1802, 1810, 1812, 1820, NB_EMBERS,
+            ],
+        );
 
         // Netherite Ark: cooling off.
-        push_hours(&mut repo, "netherite-ark", 24, &[560, 558, 556, 555, 553, 551, 550, 548,
-            547, 545, 544, 542, 540, 538, 536, 534, 532, 530, 528, 526, 525, 523, 522, NE_ARK]);
+        push_hours(
+            &mut repo,
+            "netherite-ark",
+            24,
+            &[
+                560, 558, 556, 555, 553, 551, 550, 548, 547, 545, 544, 542, 540, 538, 536, 534,
+                532, 530, 528, 526, 525, 523, 522, NE_ARK,
+            ],
+        );
 
         // Phantom Wing: mild volatility around a flat trend.
-        push_hours(&mut repo, "phantom-wing", 24, &[636, 640, 634, 642, 638, 644, 640, 645,
-            639, 646, 641, 648, 643, 649, 644, 641, 647, 643, 648, 646, 642, 645, 641, NE_WING]);
+        push_hours(
+            &mut repo,
+            "phantom-wing",
+            24,
+            &[
+                636, 640, 634, 642, 638, 644, 640, 645, 639, 646, 641, 648, 643, 649, 644, 641,
+                647, 643, 648, 646, 642, 645, 641, NE_WING,
+            ],
+        );
 
         // Voidhearth: slight rise.
-        push_hours(&mut repo, "voidhearth", 24, &[980, 984, 988, 990, 992, 995, 996, 998,
-            1000, 1001, 1003, 1004, 1005, 1006, 1005, 1005, 1006, 1007, 1008, 1008, 1009,
-            1009, 1009, NE_HEART]);
+        push_hours(
+            &mut repo,
+            "voidhearth",
+            24,
+            &[
+                980, 984, 988, 990, 992, 995, 996, 998, 1000, 1001, 1003, 1004, 1005, 1006, 1005,
+                1005, 1006, 1007, 1008, 1008, 1009, 1009, 1009, NE_HEART,
+            ],
+        );
 
         // Packed Compass Coin: small oscillation.
-        push_hours(&mut repo, "packed-compass-coin", 24, &[824, 826, 821, 828, 825, 830,
-            827, 831, 826, 829, 824, 827, 822, 826, 821, 824, 822, 825, 823, 826, 824, 828,
-            826, NE_PCOIN]);
+        push_hours(
+            &mut repo,
+            "packed-compass-coin",
+            24,
+            &[
+                824, 826, 821, 828, 825, 830, 827, 831, 826, 829, 824, 827, 822, 826, 821, 824,
+                822, 825, 823, 826, 824, 828, 826, NE_PCOIN,
+            ],
+        );
 
         TrendRepo(repo)
     }
@@ -214,7 +246,11 @@ impl TrendRepo {
 
 /// Append a fixed-length hourly series (oldest first) to the repo for `slug`.
 fn push_hours(repo: &mut BTreeMap<String, Vec<u64>>, slug: &str, hours: usize, prices: &[u64]) {
-    assert_eq!(prices.len(), hours, "seeded series length mismatch for {slug}");
+    assert_eq!(
+        prices.len(),
+        hours,
+        "seeded series length mismatch for {slug}"
+    );
     let mut series = Vec::with_capacity(hours);
     for &price in prices {
         series.push(price);
@@ -294,16 +330,51 @@ fn catalog(trends: &TrendRepo) -> BTreeMap<String, ItemSummary> {
 
     // Every slug below must have a matching series in `TrendRepo::seeded` and
     // an entry in `catalog_order`; add all three together for any new item.
-    add("emberheart", "Emberheart Core", "Relic",
-        "A volatile core sought by forge guilds.", 1840, 128, "Rising");
-    add("netherite-ark", "Netherite Ark", "Block",
-        "A reinforced arcane vault for rare ores.", 520, 342, "Cooling");
-    add("phantom-wing", "Phantom Wing", "Material",
-        "A spectral wing from the End's hidden coves.", 640, 91, "Stable");
-    add("voidhearth", "Voidhearth", "Relic",
-        "Steadily glowing heart mined from the void.", 1009, 57, "Rising");
-    add("packed-compass-coin", "Packed Compass Coin", "Token",
-        "A coin that always points toward the nearest player market.", 830, 205, "Stable");
+    add(
+        "emberheart",
+        "Emberheart Core",
+        "Relic",
+        "A volatile core sought by forge guilds.",
+        1840,
+        128,
+        "Rising",
+    );
+    add(
+        "netherite-ark",
+        "Netherite Ark",
+        "Block",
+        "A reinforced arcane vault for rare ores.",
+        520,
+        342,
+        "Cooling",
+    );
+    add(
+        "phantom-wing",
+        "Phantom Wing",
+        "Material",
+        "A spectral wing from the End's hidden coves.",
+        640,
+        91,
+        "Stable",
+    );
+    add(
+        "voidhearth",
+        "Voidhearth",
+        "Relic",
+        "Steadily glowing heart mined from the void.",
+        1009,
+        57,
+        "Rising",
+    );
+    add(
+        "packed-compass-coin",
+        "Packed Compass Coin",
+        "Token",
+        "A coin that always points toward the nearest player market.",
+        830,
+        205,
+        "Stable",
+    );
 
     m
 }
