@@ -303,6 +303,16 @@ code {
   color: #0d2413;
 }
 
+.u-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 /* ---------- masthead ---------- */
 
 .masthead {
@@ -841,7 +851,167 @@ code {
   outline: none;
 }
 
-/* Compact catalog rows: thumbnail, aligned detail column, price, action. */
+.tabs__count {
+  margin-inline-start: 0.15rem;
+  font-size: 0.75em;
+  opacity: 0.65;
+}
+
+.store-count {
+  margin-bottom: clamp(1.25rem, 2.5vw, 1.75rem);
+  color: var(--text-faint);
+  font-size: 0.85rem;
+}
+
+/* Category sigils stand in for product art: legible at small sizes and honest
+   about what they are, unlike cropped scenery photographs. */
+.sigil {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.sigil__lit {
+  stroke: var(--ember);
+}
+
+.sigil__dim {
+  stroke: rgba(255, 255, 255, 0.2);
+}
+
+.product__sigil {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  width: 2.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background:
+    radial-gradient(circle at 50% 25%, rgba(240, 163, 74, 0.15), transparent 70%),
+    var(--ink-800);
+}
+
+/* ---------- catalog groups ---------- */
+
+.group + .group {
+  margin-top: clamp(2.25rem, 4.5vw, 3.5rem);
+}
+
+.group__head {
+  display: grid;
+  gap: 0.3rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.group__head h2 {
+  font-size: var(--step-h3);
+}
+
+.group__meta {
+  color: var(--text-faint);
+  font-size: 0.875rem;
+}
+
+/* ---------- rank ladder ---------- */
+
+.tier-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: clamp(1.15rem, 2vw, 1.5rem);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(168deg, var(--ink-750), var(--ink-850));
+  transition: border-color 0.18s var(--ease), transform 0.18s var(--ease),
+    box-shadow 0.18s var(--ease);
+}
+
+.tier:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.tier[data-featured="true"] {
+  border-color: rgba(240, 163, 74, 0.55);
+  box-shadow: 0 0 0 1px rgba(240, 163, 74, 0.18);
+}
+
+.tier__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.35rem;
+}
+
+.tier__step {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.tier__name {
+  font-size: 1.15rem;
+}
+
+.tier__price {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+/* The one field that makes the ladder comparable at a glance. */
+.tier__highlight {
+  color: var(--ember-bright);
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+.tier__desc {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+}
+
+.tier__perks {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0;
+  margin: 0.35rem 0 1rem;
+  list-style: none;
+  color: var(--text-faint);
+  font-size: 0.82rem;
+}
+
+.tier__perks li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.tier__perks li::before {
+  content: "\002B";
+  color: var(--ember);
+  font-weight: 700;
+}
+
+.tier .btn {
+  margin-top: auto;
+  justify-content: center;
+}
+
+/* ---------- compact catalog rows ---------- */
+
 .catalog {
   display: grid;
   gap: 0.7rem;
@@ -849,7 +1019,7 @@ code {
 
 .product {
   display: grid;
-  grid-template-columns: 4.5rem minmax(0, 1fr) auto auto;
+  grid-template-columns: 2.9rem minmax(0, 1fr) auto auto;
   gap: clamp(0.9rem, 2vw, 1.5rem);
   align-items: center;
   padding: 0.85rem 1.1rem;
@@ -868,14 +1038,6 @@ code {
   border-inline-start: 2px solid var(--ember);
 }
 
-.product__thumb {
-  aspect-ratio: 1;
-  width: 100%;
-  border-radius: var(--radius-sm);
-  background: var(--ink-700);
-  object-fit: cover;
-}
-
 .product__main {
   display: grid;
   gap: 0.2rem;
@@ -889,9 +1051,21 @@ code {
   align-items: baseline;
 }
 
-.product h2 {
+.product h3 {
   font-size: 1.0625rem;
   letter-spacing: -0.005em;
+}
+
+/* Computed value note: bundle saving or emerald rate. */
+.product__value {
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
+.product__value--best {
+  color: #b8ecf5;
 }
 
 .product__badge {
@@ -1081,9 +1255,13 @@ code {
   }
 
   .product {
-    grid-template-columns: 3.25rem minmax(0, 1fr);
+    grid-template-columns: 2.5rem minmax(0, 1fr);
     align-items: start;
     row-gap: 0.6rem;
+  }
+
+  .product__sigil {
+    width: 2.5rem;
   }
 
   .product__price {

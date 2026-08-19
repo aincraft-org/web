@@ -16,7 +16,7 @@ test.describe('Rust-rendered routes', () => {
     expect(missing.status()).toBe(404);
   });
 
-  test('store renders artwork, canonical purchase links, and client filters', async ({ page }) => {
+  test('store renders a mark per package, canonical purchase links, and client filters', async ({ page }) => {
     await page.goto('/store');
     await expect(page.getByTestId('product-card')).toHaveCount(12);
     await expect(page.getByTestId('product-image')).toHaveCount(12);
@@ -27,6 +27,21 @@ test.describe('Rust-rendered routes', () => {
     await page.getByTestId('store-search').fill('ember knight');
     await expect(page).toHaveURL(/category=rank&q=ember\+knight/);
     await expect(page.locator('[data-testid="product-card"]:not([hidden])')).toHaveCount(1);
+  });
+
+  test('store groups the catalog, computes value, and hides empty groups', async ({ page }) => {
+    await page.goto('/store');
+    await expect(page.getByTestId('store-count')).toHaveText('Showing all 12 packages');
+    await expect(page.locator('.tier')).toHaveCount(4);
+    await expect(page.locator('.product__badge')).toHaveCount(1);
+    await expect(page.getByText('Save $11.97 (44%)')).toBeVisible();
+    await expect(page.getByText('best rate')).toBeVisible();
+    await page.getByTestId('store-tabs').getByRole('button', { name: 'Crates' }).click();
+    await expect(page.locator('[data-group="crate"]')).toBeVisible();
+    await expect(page.locator('[data-group="rank"]')).toBeHidden();
+    await expect(page.getByTestId('store-count')).toHaveText('Showing 2 of 12 packages');
+    await page.getByTestId('store-search').fill('zzzz');
+    await expect(page.getByTestId('store-empty')).toBeVisible();
   });
 
   test('forum renders explicit setup state without configuration', async ({ page }) => {
