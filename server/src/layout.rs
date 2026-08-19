@@ -55,7 +55,7 @@ pub fn page(title: &str, current: Nav, body: &str) -> Html<String> {
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="masthead" data-masthead>
   <div class="container masthead__inner">
-    <a class="brand" href="/" aria-label="AzothMC home"><img src="/assets/logo.png" alt="AzothMC" width="965" height="445"></a>
+    <a class="brand" href="/" aria-label="AzothMC home"><img src="/assets/logo.png" alt="AzothMC" width="384" height="177"></a>
     <nav class="nav" aria-label="Primary navigation">{nav_links}</nav>
     <a class="btn btn--primary btn--sm" href="/store">Play now</a>
   </div>
@@ -65,7 +65,7 @@ pub fn page(title: &str, current: Nav, body: &str) -> Html<String> {
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <img src="/assets/logo.png" alt="AzothMC" width="965" height="445">
+        <img src="/assets/logo.png" alt="AzothMC" width="384" height="177">
         <p>A handcrafted Minecraft MMORPG. Join us at <strong>{SERVER_ADDRESS}</strong>.</p>
       </div>
       <nav class="footer__nav" aria-label="Footer navigation">

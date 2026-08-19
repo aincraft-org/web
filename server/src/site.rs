@@ -167,7 +167,7 @@ pub async fn landing_page() -> Html<String> {
         <h2 id="intro-title">Every path begins with a choice.</h2>
         <p class="lead">Azoth is handcrafted, persistent, and shaped by the people who live in it. Pick a discipline, take a contract, and find out what the frontier does with your name.</p>
       </div>
-      <figure class="band__art band__art--cutout"><img src="/assets/character-mage.png" alt="An adventurer mage holding a glowing staff" loading="lazy" decoding="async"></figure>
+      <figure class="band__art"><img src="/assets/adventurer.jpg" alt="A hooded adventurer with a staff on a dark ridge above a misted valley" loading="lazy" decoding="async"></figure>
     </div>
     <div class="card-grid reveal">{steps}</div>
   </div>
@@ -179,7 +179,7 @@ pub async fn landing_page() -> Html<String> {
         r#"<section class="section section--tight" id="join" aria-labelledby="join-title">
   <div class="container">
     <div class="cta reveal">
-      <img class="cta__art" src="/assets/dragon.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
+      <img class="cta__art" src="/assets/dragon.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
       <div class="cta__inner">
         <span class="eyebrow">Ready to join?</span>
         <h2 id="join-title">The frontier is waking.</h2>
@@ -310,7 +310,7 @@ mod tests {
             .join("public")
             .join("assets");
         let markup = format!("{}{}", bands(), steps());
-        let referenced = ["hero-bg.jpg", "character-mage.png", "dragon.png", "logo.png"]
+        let referenced = ["hero-bg.jpg", "adventurer.jpg", "dragon.jpg", "logo.png"]
             .into_iter()
             .chain(BANDS.iter().map(|band| {
                 band.image

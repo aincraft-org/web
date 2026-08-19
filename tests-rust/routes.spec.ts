@@ -9,6 +9,28 @@ test.describe('Rust-rendered routes', () => {
     }
   });
 
+  test('every image on the landing page actually decodes', async ({ page }) => {
+    const failures: string[] = [];
+    page.on('response', (r) => {
+      if (r.status() >= 400) failures.push(`${r.status()} ${r.url()}`);
+    });
+    await page.goto('/');
+    await page.evaluate(() => {
+      for (const img of document.images) img.loading = 'eager';
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+    // Element presence is not proof of loading; the previous asset bug passed
+    // a presence check while every image 404ed.
+    await expect
+      .poll(async () =>
+        page.evaluate(() => [...document.images].every((i) => i.complete && i.naturalWidth > 0)),
+      )
+      .toBe(true);
+    const count = await page.evaluate(() => document.images.length);
+    expect(count).toBeGreaterThanOrEqual(7);
+    expect(failures).toEqual([]);
+  });
+
   test('news article renders Markdown and missing article is 404', async ({ page, request }) => {
     await page.goto('/news/2026-08-10-season-zero-launches');
     await expect(page.getByRole('heading', { name: 'Expedition notes' })).toBeVisible();

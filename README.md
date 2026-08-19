@@ -31,6 +31,13 @@ Every page is wrapped by the shared shell in `server/src/layout.rs`, which owns 
 
 Styling lives in `public/assets/styles.css` as a single stylesheet of design tokens and component classes — no build step, no framework. `public/assets/site.js` adds the sticky-header state, server-address copy button, and scroll reveals; `public/assets/store.js` adds catalog filtering. Both are progressive enhancements, so the pages remain usable without JavaScript.
 
+Artwork lives in `public/assets` as opaque JPEGs, deliberately. The earlier
+transparent cutouts had been hand-cut from a white canvas, which left white pockets
+trapped inside the figures and a pale matte fringe that only showed against a
+dark page. Keeping the art opaque removes that class of defect entirely; the one
+remaining PNG is the logo, which needs its transparency. Images are sized close
+to their display size rather than shipped at source resolution.
+
 ## Test
 
 ```sh

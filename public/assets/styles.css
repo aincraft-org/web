@@ -531,26 +531,6 @@ code {
 }
 
 /* Cutout character/creature art sits on the gradient, not in a frame. */
-.band__art--cutout {
-  border: 0;
-  background: none;
-  box-shadow: none;
-}
-
-.band__art--cutout::after {
-  display: none;
-}
-
-.band__art--cutout img {
-  aspect-ratio: auto;
-  height: auto;
-  width: auto;
-  max-height: 30rem;
-  margin-inline: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 26px 44px rgba(0, 0, 0, 0.62));
-}
-
 .checks {
   display: grid;
   gap: 0.6rem;
@@ -630,11 +610,12 @@ code {
 /* Decorative creature art, anchored bottom-right behind the copy. */
 .cta__art {
   position: absolute;
-  right: -3%;
-  bottom: -14%;
-  width: min(30rem, 52%);
-  opacity: 0.22;
-  mask-image: linear-gradient(to left, #000 30%, transparent 92%);
+  right: -4%;
+  bottom: -18%;
+  width: min(38rem, 62%);
+  opacity: 0.85;
+  mix-blend-mode: screen;
+  mask-image: radial-gradient(ellipse at 68% 58%, #000 44%, transparent 80%);
   pointer-events: none;
 }
 
