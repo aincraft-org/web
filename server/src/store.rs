@@ -1,5 +1,7 @@
 use axum::response::Html;
 
+use crate::layout::{self, Nav};
+
 struct Package {
     slug: &'static str,
     name: &'static str,
@@ -160,22 +162,85 @@ const PACKAGES: [Package; 12] = [
 fn package_url(slug: &str) -> String {
     format!("https://store.azothmc.com/package/{slug}")
 }
-fn shell(content: &str) -> Html<String> {
-    Html(format!(
-        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Store | AzothMC</title></head><body><header><a href="/" aria-label="AzothMC home">AzothMC</a><nav aria-label="Primary navigation"><a href="/">Home</a><a href="/news">News</a><a href="/store">Store</a><a href="/forum">Forum</a></nav></header><main>{content}</main><footer><small>AzothMC</small></footer></body></html>"#
-    ))
+const CATEGORIES: [(&str, &str); 6] = [
+    ("all", "All"),
+    ("rank", "Ranks"),
+    ("crate", "Crates"),
+    ("cosmetic", "Cosmetics"),
+    ("coin", "Coins"),
+    ("bundle", "Bundles"),
+];
+
+fn tabs() -> String {
+    CATEGORIES
+        .iter()
+        .map(|(slug, label)| {
+            let pressed = *slug == "all";
+            format!(
+                r#"<button type="button" data-category="{slug}" aria-pressed="{pressed}">{label}</button>"#
+            )
+        })
+        .collect()
+}
+
+fn catalog() -> String {
+    PACKAGES
+        .iter()
+        .map(|p| {
+            let perks = p
+                .perks
+                .iter()
+                .map(|perk| format!("<li>{perk}</li>"))
+                .collect::<String>();
+            let featured = if p.featured {
+                r#" data-featured="true""#
+            } else {
+                ""
+            };
+            let badge = if p.featured {
+                r#"<span class="product__badge">Popular</span>"#
+            } else {
+                ""
+            };
+            let search =
+                format!("{} {} {}", p.name, p.description, p.perks.join(" ")).to_lowercase();
+            format!(
+                r#"<article class="product" data-testid="product-card" data-category="{category}" data-search="{search}"{featured}><img class="product__thumb" data-testid="product-image" src="{image}" alt="{alt}" loading="lazy" decoding="async"><div class="product__main"><div class="product__title"><h2>{name}</h2>{badge}</div><p class="product__desc">{description}</p><ul class="product__perks">{perks}</ul></div><p class="product__price">${price}</p><a class="btn btn--primary btn--sm" data-testid="product-buy" href="{url}" target="_blank" rel="noopener noreferrer">Purchase</a></article>"#,
+                category = p.category,
+                search = html_escape(&search),
+                image = p.image,
+                alt = p.image_alt,
+                name = p.name,
+                description = p.description,
+                price = p.price,
+                url = package_url(p.slug),
+            )
+        })
+        .collect()
 }
 
 pub async fn index() -> Html<String> {
-    let cards = PACKAGES.iter().map(|p| {
-        let perks = p.perks.iter().map(|perk| format!("<li>{perk}</li>")).collect::<String>();
-        let featured = if p.featured { " data-featured=\"true\"" } else { "" };
-        let search = format!("{} {} {}", p.name, p.description, p.perks.join(" ")).to_lowercase();
-        format!(r#"<article data-testid="product-card" data-category="{}" data-search="{}"{}><img data-testid="product-image" src="{}" alt="{}"><h2>{}</h2><p>${}</p><p>{}</p><ul>{}</ul><a data-testid="product-buy" href="{}" target="_blank" rel="noopener noreferrer">Purchase</a></article>"#, p.category, html_escape(&search), featured, p.image, p.image_alt, p.name, p.price, p.description, perks, package_url(p.slug))
-    }).collect::<String>();
-    shell(&format!(
-        r#"<section data-testid="store-page"><section data-testid="store-hero"><p>AZOTHMC / WEBSTORE</p><h1>Store</h1><p>Support the realm and unlock perks for your journey.</p></section><div><nav data-testid="store-tabs" aria-label="Filter by category"><button type="button" data-category="all" aria-pressed="true">All</button><button type="button" data-category="rank" aria-pressed="false">Ranks</button><button type="button" data-category="crate" aria-pressed="false">Crates</button><button type="button" data-category="cosmetic" aria-pressed="false">Cosmetics</button><button type="button" data-category="coin" aria-pressed="false">Coins</button><button type="button" data-category="bundle" aria-pressed="false">Bundles</button></nav><label>Search packages<input data-testid="store-search" id="store-search" type="search" aria-label="Search packages" placeholder="Search ranks, crates, coins…"></label></div><div data-testid="store-grid">{cards}</div><p data-testid="store-empty" hidden>No packages match your search.</p><section data-testid="market-panel"><h2>Player market</h2><p>Explore the seeded market snapshot and 24h price trends.</p><a href="/api/v1/items">Market data</a></section><section data-testid="delivery-note"><h2>Delivery</h2><p>Deliveries arrive in-game within about 1-2 minutes, even if you are offline.</p></section><script src="/assets/store.js" defer></script></section>"#
-    ))
+    layout::page(
+        "Store | AzothMC",
+        Nav::Store,
+        &format!(
+            r#"<section class="page-head" data-testid="store-hero"><div class="container"><div class="page-head__inner"><span class="eyebrow">AzothMC / Webstore</span><h1>Store</h1><p class="lead">Support the realm and unlock perks for your journey. Deliveries land in-game in about a minute.</p></div></div></section>
+<section class="section section--tight" data-testid="store-page"><div class="container">
+  <div class="store-toolbar">
+    <nav class="tabs" data-testid="store-tabs" aria-label="Filter by category">{tabs}</nav>
+    <label class="search">Search packages<input data-testid="store-search" id="store-search" type="search" aria-label="Search packages" placeholder="Search ranks, crates, coins…"></label>
+  </div>
+  <div class="catalog" data-testid="store-grid">{catalog}</div>
+  <p class="store-empty" data-testid="store-empty" hidden>No packages match your search.</p>
+  <div class="panel-grid">
+    <section class="panel" data-testid="market-panel"><h2>Player market</h2><p>Explore the seeded market snapshot and 24h price trends.</p><a href="/api/v1/items">Market data →</a></section>
+    <section class="panel" data-testid="delivery-note"><h2>Delivery</h2><p>Deliveries arrive in-game within about 1-2 minutes, even if you are offline.</p></section>
+  </div>
+</div><script src="/assets/store.js" defer></script></section>"#,
+            tabs = tabs(),
+            catalog = catalog(),
+        ),
+    )
 }
 
 fn html_escape(value: &str) -> String {

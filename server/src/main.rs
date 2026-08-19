@@ -17,6 +17,7 @@ use serde::Deserialize;
 use tower_http::cors::CorsLayer;
 
 mod forum;
+mod layout;
 mod market;
 mod news;
 mod site;

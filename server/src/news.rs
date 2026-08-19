@@ -5,6 +5,8 @@ use axum::{
 };
 use pulldown_cmark::{html, Parser};
 
+use crate::layout::{self, Nav};
+
 #[derive(Clone, Copy)]
 pub struct NewsPost {
     pub slug: &'static str,
@@ -30,27 +32,59 @@ fn markdown(body: &str) -> String {
     rendered
 }
 
-fn shell(title: &str, content: &str) -> Html<String> {
-    Html(format!(
-        r#"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{title} | AzothMC</title></head><body><header><a href="/">AzothMC</a><nav><a href="/">Home</a><a href="/news">News</a><a href="/store">Store</a><a href="/forum">Forum</a></nav></header><main>{content}</main><footer><small>AzothMC</small></footer></body></html>"#
-    ))
+fn page(title: &str, content: &str) -> Html<String> {
+    layout::page(&format!("{title} | AzothMC"), Nav::News, content)
+}
+
+fn page_head(eyebrow: &str, heading: &str, lead: &str) -> String {
+    format!(
+        r#"<section class="page-head"><div class="container"><div class="page-head__inner"><span class="eyebrow">{eyebrow}</span>{heading}<p class="lead">{lead}</p></div></div></section>"#
+    )
 }
 
 pub async fn index() -> Html<String> {
-    let cards = POSTS.iter().map(|post| format!(r#"<article data-testid="news-card"><p>{}</p><h2><a href="/news/{}">{}</a></h2><p>{}</p></article>"#, post.date, post.slug, post.title, post.summary)).collect::<String>();
-    shell(
+    let cards = POSTS
+        .iter()
+        .map(|post| {
+            format!(
+                r#"<article class="news-card" data-testid="news-card"><p class="news-card__date">{}</p><h2><a href="/news/{}">{}</a></h2><p>{}</p></article>"#,
+                post.date, post.slug, post.title, post.summary
+            )
+        })
+        .collect::<String>();
+    let head = page_head(
+        "AzothMC / Chronicles",
+        "<h1>News</h1>",
+        "Expedition notes, updates, and chronicles from the frontier.",
+    );
+    page(
         "News",
         &format!(
-            r#"<section data-testid="news-index"><p>AZOTHMC / CHRONICLES</p><h1>News</h1><p>Expedition notes, updates, and chronicles from the frontier.</p>{cards}</section>"#
+            r#"{head}<section class="section" data-testid="news-index"><div class="container"><div class="news-list">{cards}</div></div></section>"#
         ),
     )
 }
 
 pub async fn article(Path(slug): Path<String>) -> Response {
-    match find_post(&slug) {
-        Some(post) => shell(post.title, &format!(r#"<article data-testid="news-article"><p>{}</p><h1>{}</h1><p>{}</p><div>{}</div></article>"#, post.date, post.title, post.summary, markdown(post.body))).into_response(),
-        None => StatusCode::NOT_FOUND.into_response(),
-    }
+    let Some(post) = find_post(&slug) else {
+        return StatusCode::NOT_FOUND.into_response();
+    };
+    let head = page_head(
+        "AzothMC / Chronicles",
+        &format!(
+            r#"<p class="article__date">{}</p><h1>{}</h1>"#,
+            post.date, post.title
+        ),
+        post.summary,
+    );
+    let body = markdown(post.body);
+    page(
+        post.title,
+        &format!(
+            r#"{head}<section class="section"><div class="container"><article class="article" data-testid="news-article"><div class="prose">{body}</div><a class="back-link" href="/news">← All chronicles</a></article></div></section>"#
+        ),
+    )
+    .into_response()
 }
 
 #[cfg(test)]
