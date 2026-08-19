@@ -150,7 +150,6 @@ pub async fn landing_page() -> Html<String> {
   <img class="hero__art" src="/assets/hero-bg.jpg" alt="" aria-hidden="true" fetchpriority="high">
   <div class="container hero__inner">
     <span class="tag tag--live">Season zero — live</span>
-    <span class="eyebrow">AzothMC</span>
     <h1 id="hero-title">A world worth getting lost in.</h1>
     <p class="lead">Explore a living Minecraft MMORPG built for discovery, mastery, and community.</p>
     <div class="hero__actions">{ip}<a class="btn btn--ghost" href="/store">Browse the store</a></div>
