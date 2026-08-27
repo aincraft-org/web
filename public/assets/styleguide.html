@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AzothMC — "Ironhold" Style Guide</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="azoth.css">
+<style>
+/* Gallery chrome only — not part of the design system. */
+.sg-shell { max-width: var(--container); margin-inline: auto; padding-inline: var(--gutter); }
+.sg-masthead { position: sticky; top: 0; z-index: var(--z-sticky); background: color-mix(in srgb, var(--surface-overlay) 82%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-subtle); }
+.sg-masthead .sg-shell { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); min-height: var(--header-h); flex-wrap: wrap; }
+.sg-mark { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--text-primary); letter-spacing: var(--tracking-snug); }
+.sg-mark span { color: var(--accent); }
+.sg-nav { display: flex; gap: var(--space-5); flex-wrap: wrap; }
+.sg-nav a { font-size: var(--text-base); font-weight: 500; color: var(--text-secondary); text-decoration: none; }
+.sg-nav a:hover { color: var(--text-primary); }
+
+.sg-hero { padding: var(--space-24) 0 var(--space-16); border-bottom: 1px solid var(--border-subtle); }
+.sg-section { padding: var(--space-16) 0; border-bottom: 1px solid var(--border-subtle); }
+.sg-head { display: grid; gap: var(--space-2); margin-bottom: var(--space-8); }
+.sg-sub { margin-top: var(--space-10); margin-bottom: var(--space-4); }
+
+.sg-grid { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(15rem,100%),1fr)); }
+.sg-row { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+.sg-stack { display: grid; gap: var(--space-4); }
+
+.swatch { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); overflow: hidden; background: var(--surface-raised); }
+.swatch__chip { height: 76px; }
+.swatch__meta { padding: var(--space-3) var(--space-4); display: grid; gap: 2px; }
+.swatch__name { font-size: var(--text-sm); font-weight: 600; color: var(--text-primary); }
+.swatch__val { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-tertiary); }
+.swatch__ratio { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--value); }
+
+.spec { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: var(--space-4) var(--space-8); align-items: baseline; padding: var(--space-5) 0; border-top: 1px solid var(--border-subtle); }
+.spec__meta { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-tertiary); text-align: right; white-space: nowrap; line-height: 1.7; }
+
+.matrix { display: grid; gap: var(--space-4); grid-template-columns: repeat(auto-fit, minmax(min(9rem,100%),1fr)); align-items: start; }
+.matrix__cell { display: grid; gap: var(--space-3); justify-items: start; }
+.matrix__label { font-size: var(--text-2xs); font-weight: 700; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-tertiary); }
+
+.demo-art { position: relative; border-radius: var(--radius-xl); overflow: hidden; border: 1px solid var(--border-subtle); }
+.demo-art img { width: 100%; height: 340px; object-fit: cover; }
+.demo-art__scrim { position: absolute; inset: 0; background: linear-gradient(90deg,
+    color-mix(in srgb, var(--surface-base) 94%, transparent) 0%,
+    color-mix(in srgb, var(--surface-base) 72%, transparent) 45%,
+    color-mix(in srgb, var(--surface-base) 25%, transparent) 100%); }
+.demo-art__inner { position: absolute; inset: 0; display: grid; align-content: center; gap: var(--space-4); padding: var(--space-10); }
+
+.product { display: grid; grid-template-columns: 56px minmax(0,1fr) auto auto; gap: var(--space-5); align-items: center; padding: var(--space-4) var(--space-5); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); background: var(--surface-raised); }
+.product__thumb { width: 56px; height: 56px; border-radius: var(--radius-md); background: linear-gradient(150deg, var(--ink-700), var(--ink-800)); display: grid; place-content: center; font-size: 1.4rem; }
+@media (max-width: 640px) { .product { grid-template-columns: 56px minmax(0,1fr); } }
+
+.note { padding: var(--space-4) var(--space-5); border-radius: var(--radius-md); background: var(--surface-sunken); border: 1px dashed var(--border-default); font-size: var(--text-base); color: var(--text-tertiary); }
+</style>
+</head>
+<body>
+
+<header class="sg-masthead">
+  <div class="sg-shell">
+    <div class="sg-mark">Azoth<span>MC</span> · Ironhold</div>
+    <nav class="sg-nav">
+      <a href="#color">Color</a>
+      <a href="#type">Typography</a>
+      <a href="#buttons">Buttons</a>
+      <a href="#forms">Forms</a>
+      <a href="#elements">Elements</a>
+      <a href="#situ">In&nbsp;situ</a>
+    </nav>
+  </div>
+</header>
+
+<div class="sg-shell">
+
+  <section class="sg-hero">
+    <span class="overline">AzothMC design system</span>
+    <h1 class="display-1" style="margin-top:var(--space-4)">Ironhold</h1>
+    <p class="lead" style="margin-top:var(--space-5)">A frontier that keeps score. Cold steel underfoot, rust for the one action that matters in a view, and brass for anything a player counts &mdash; set in a condensed face that reads like a stamped plate.</p>
+    <div class="sg-row" style="margin-top:var(--space-8)">
+      <span class="ip"><span class="ip__addr">play.azothmc.com</span><button class="btn btn--primary btn--sm">Copy IP</button></span>
+      <a class="btn btn--ghost" href="#type">See the type scale</a>
+    </div>
+  </section>
+
+  <!-- ============ COLOR ============ -->
+  <section class="sg-section" id="color">
+    <div class="sg-head">
+      <span class="overline">01 &mdash; Color</span>
+      <h2 class="heading-1">Steel, rust, brass</h2>
+      <p class="lead">Backgrounds stay cold and neutral so the artwork carries the color. Rust marks the one action that matters most in a view. Brass is money &mdash; prices, savings, market data.</p>
+    </div>
+
+    <h3 class="title sg-sub">Surfaces</h3>
+    <div class="sg-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:var(--surface-sunken)"></div><div class="swatch__meta"><span class="swatch__name">surface-sunken</span><span class="swatch__val" data-token="--surface-sunken"></span><span class="caption">inputs, wells</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--surface-base)"></div><div class="swatch__meta"><span class="swatch__name">surface-base</span><span class="swatch__val" data-token="--surface-base"></span><span class="caption">page background</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--surface-raised)"></div><div class="swatch__meta"><span class="swatch__name">surface-raised</span><span class="swatch__val" data-token="--surface-raised"></span><span class="caption">cards, panels</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--surface-overlay)"></div><div class="swatch__meta"><span class="swatch__name">surface-overlay</span><span class="swatch__val" data-token="--surface-overlay"></span><span class="caption">sticky header, menus</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--surface-hover)"></div><div class="swatch__meta"><span class="swatch__name">surface-hover</span><span class="swatch__val" data-token="--surface-hover"></span><span class="caption">raised + cursor</span></div></div>
+    </div>
+
+    <h3 class="title sg-sub">Rust &mdash; action &amp; emphasis</h3>
+    <div class="sg-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-200)"></div><div class="swatch__meta"><span class="swatch__name">rust-200</span><span class="swatch__val" data-token="--rust-200"></span><span class="caption">link hover</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-300)"></div><div class="swatch__meta"><span class="swatch__name">rust-300</span><span class="swatch__val" data-token="--rust-300"></span><span class="caption">tag text</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-400)"></div><div class="swatch__meta"><span class="swatch__name">rust-400</span><span class="swatch__val" data-token="--rust-400"></span><span class="swatch__ratio" data-ratio="--rust-400" data-note="links, focus"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-500)"></div><div class="swatch__meta"><span class="swatch__name">rust-500</span><span class="swatch__val" data-token="--rust-500"></span><span class="swatch__ratio" data-ratio="--rust-500" data-against="--text-inverse" data-note="accent fill vs its label"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-600)"></div><div class="swatch__meta"><span class="swatch__name">rust-600</span><span class="swatch__val" data-token="--rust-600"></span><span class="caption">primary active</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--rust-700)"></div><div class="swatch__meta"><span class="swatch__name">rust-700</span><span class="swatch__val" data-token="--rust-700"></span><span class="caption">pressed wells</span></div></div>
+    </div>
+
+    <h3 class="title sg-sub">Brass &mdash; value</h3>
+    <div class="sg-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:var(--brass-200)"></div><div class="swatch__meta"><span class="swatch__name">brass-200</span><span class="swatch__val" data-token="--brass-200"></span><span class="caption">live tag text</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--brass-300)"></div><div class="swatch__meta"><span class="swatch__name">brass-300</span><span class="swatch__val" data-token="--brass-300"></span><span class="caption">hover</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--brass-400)"></div><div class="swatch__meta"><span class="swatch__name">brass-400</span><span class="swatch__val" data-token="--brass-400"></span><span class="swatch__ratio" data-ratio="--brass-400" data-note="prices"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--brass-500)"></div><div class="swatch__meta"><span class="swatch__name">brass-500</span><span class="swatch__val" data-token="--brass-500"></span><span class="caption">borders</span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--brass-600)"></div><div class="swatch__meta"><span class="swatch__name">brass-600</span><span class="swatch__val" data-token="--brass-600"></span><span class="caption">deep fills</span></div></div>
+    </div>
+
+    <h3 class="title sg-sub">Text hierarchy</h3>
+    <div class="panel">
+      <p style="color:var(--text-primary);font-size:var(--text-lg)">text-primary &mdash; headings and high-emphasis body <span class="numeric caption" style="color:var(--value)" data-ratio="--text-primary"></span></p>
+      <p style="color:var(--text-secondary)">text-secondary &mdash; the default for prose and descriptions <span class="numeric caption" style="color:var(--value)" data-ratio="--text-secondary"></span></p>
+      <p style="color:var(--text-tertiary)">text-tertiary &mdash; timestamps, captions, meta, placeholders <span class="numeric caption" style="color:var(--value)" data-ratio="--text-tertiary"></span></p>
+      <p style="color:var(--text-disabled)">text-disabled &mdash; disabled controls only, never content <span class="numeric caption" style="color:var(--warning)" data-ratio="--text-disabled"></span></p>
+      <p style="color:var(--accent-text)">accent-text &mdash; links and inline emphasis <span class="numeric caption" style="color:var(--value)" data-ratio="--accent-text"></span></p>
+    </div>
+
+    <h3 class="title sg-sub">Semantic</h3>
+    <div class="sg-grid">
+      <div class="swatch"><div class="swatch__chip" style="background:var(--success)"></div><div class="swatch__meta"><span class="swatch__name">success</span><span class="swatch__val" data-token="--success"></span><span class="swatch__ratio" data-ratio="--success"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--warning)"></div><div class="swatch__meta"><span class="swatch__name">warning</span><span class="swatch__val" data-token="--warning"></span><span class="swatch__ratio" data-ratio="--warning"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--danger)"></div><div class="swatch__meta"><span class="swatch__name">danger</span><span class="swatch__val" data-token="--danger"></span><span class="swatch__ratio" data-ratio="--danger"></span></div></div>
+      <div class="swatch"><div class="swatch__chip" style="background:var(--info)"></div><div class="swatch__meta"><span class="swatch__name">info</span><span class="swatch__val" data-token="--info"></span><span class="swatch__ratio" data-ratio="--info"></span></div></div>
+    </div>
+    <p class="note" style="margin-top:var(--space-6)"><strong>Danger is deliberately off-hue from the accent.</strong> Rust sits at 15&deg; and crimson at 356&deg;. When they match, a destructive button and the primary action become the same colour and the only thing separating them is the label. Warning is likewise pulled brighter than brass so a caution notice cannot be mistaken for a price.</p>
+    <p class="note">Every hex and ratio on this page is read from the live tokens at load, not typed in. Ratios are measured against <code>--surface-base</code> unless noted, so switching the theme re-measures rather than lying.</p>
+  </section>
+
+  <!-- ============ TYPE ============ -->
+  <section class="sg-section" id="type">
+    <div class="sg-head">
+      <span class="overline">02 — Typography</span>
+      <h2 class="heading-1">Thirteen roles, no improvising</h2>
+      <p class="lead">Oswald for display, Inter for everything functional, JetBrains Mono for anything you count. The condensed face stops at 20px: below that its tight counters close up on a dark background, so <code>heading-3</code> and everything under it switch to Inter.</p>
+    </div>
+
+    <div class="spec">
+      <div><span class="display-1">A world worth getting lost in.</span></div>
+      <div class="spec__meta">display-1<br>Oswald 600 caps<br>42→84px<br>lh 1.06 · tr 0.01em</div>
+    </div>
+    <div class="spec">
+      <div><span class="display-2">The frontier is waking.</span></div>
+      <div class="spec__meta">display-2<br>Oswald 600 caps<br>36→56px<br>lh 1.06 · tr 0.01em</div>
+    </div>
+    <div class="spec">
+      <div><span class="heading-1">Items worth chasing</span></div>
+      <div class="spec__meta">heading-1<br>Oswald 500<br>28→42px<br>lh 1.2 · tr 0.02em</div>
+    </div>
+    <div class="spec">
+      <div><span class="heading-2">Quests with consequence</span></div>
+      <div class="spec__meta">heading-2<br>Oswald 500<br>20→24px<br>lh 1.2</div>
+    </div>
+    <div class="spec">
+      <div><span class="heading-3">Coordinated raid windows</span></div>
+      <div class="spec__meta">heading-3<br>Inter 600<br>17→20px<br>sans — condensed fails here</div>
+    </div>
+    <div class="spec">
+      <div><span class="title">Find your people</span></div>
+      <div class="spec__meta">title<br>Inter 600 · 17px<br>card &amp; panel headings</div>
+    </div>
+    <div class="spec">
+      <div><p class="lead">Explore a living Minecraft MMORPG built for discovery, mastery, and community.</p></div>
+      <div class="spec__meta">lead<br>Inter 400<br>17→20px · lh 1.65<br>max 58ch</div>
+    </div>
+    <div class="spec">
+      <div><p class="body">Gear carries provenance, and the emerald economy is driven by players, not vendors. Trade histories you can actually look up.</p></div>
+      <div class="spec__meta">body<br>Inter 400 · 17px<br>lh 1.65 · max 68ch</div>
+    </div>
+    <div class="spec">
+      <div><p class="body-sm">Squad up for raid windows, join a guild, and trade on the open emerald market.</p></div>
+      <div class="spec__meta">body-sm<br>Inter 400 · 15px</div>
+    </div>
+    <div class="spec">
+      <div><span class="label">Filter by tier</span></div>
+      <div class="spec__meta">label<br>Inter 600 · 13px<br>caps · tr 0.16em</div>
+    </div>
+    <div class="spec">
+      <div><span class="overline">Season zero</span></div>
+      <div class="spec__meta">overline<br>Inter 700 · 11px<br>caps · accent-text</div>
+    </div>
+    <div class="spec">
+      <div><span class="caption">Posted 19 August 2026 · 4 min read</span></div>
+      <div class="spec__meta">caption<br>Inter 400 · 12px<br>text-tertiary</div>
+    </div>
+    <div class="spec">
+      <div><span class="numeric" style="font-size:var(--text-xl);color:var(--text-primary)">1,284.50</span> <span class="numeric" style="color:var(--value)">+12.4%</span></div>
+      <div class="spec__meta">numeric<br>JetBrains Mono 500<br>tabular-nums</div>
+    </div>
+
+    <p class="note" style="margin-top:var(--space-8)"><strong style="color:var(--warning)">Fixes a live defect.</strong> The current site stylesheet declares <code>"Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif</code> with no webfont loaded anywhere in the repo. macOS gets Iowan, Windows gets Palatino, Linux and Android fall back to Georgia — the intended headings have never actually shipped to most visitors. The three fonts on this page are self-hosted from <code>public/assets/fonts/</code>, so they render identically everywhere.</p>
+  </section>
+
+  <!-- ============ BUTTONS ============ -->
+  <section class="sg-section" id="buttons">
+    <div class="sg-head">
+      <span class="overline">03 — Buttons</span>
+      <h2 class="heading-1">Five variants, five states each</h2>
+      <p class="lead">One rust button per view. If a screen has three, it has no primary action. Every variant defines rest, hover, active, focus, and disabled — a missing focus ring means the component is unfinished.</p>
+    </div>
+
+    <h3 class="title">Primary — the single most important action</h3>
+    <div class="matrix" style="margin-top:var(--space-4)">
+      <div class="matrix__cell"><span class="matrix__label">Rest</span><button class="btn btn--primary">Copy IP</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Hover</span><button class="btn btn--primary is-hover">Copy IP</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Active</span><button class="btn btn--primary is-active">Copy IP</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Focus</span><button class="btn btn--primary is-focus">Copy IP</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Disabled</span><button class="btn btn--primary" disabled>Copy IP</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Loading</span><button class="btn btn--primary" aria-busy="true"><span class="spinner"></span>Copy IP</button></div>
+    </div>
+
+    <h3 class="title sg-sub">Secondary — supporting actions</h3>
+    <div class="matrix">
+      <div class="matrix__cell"><span class="matrix__label">Rest</span><button class="btn btn--secondary">View details</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Hover</span><button class="btn btn--secondary is-hover">View details</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Active</span><button class="btn btn--secondary is-active">View details</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Focus</span><button class="btn btn--secondary is-focus">View details</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Disabled</span><button class="btn btn--secondary" disabled>View details</button></div>
+    </div>
+
+    <h3 class="title sg-sub">Ghost — over artwork</h3>
+    <div class="matrix">
+      <div class="matrix__cell"><span class="matrix__label">Rest</span><button class="btn btn--ghost">Browse the store</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Hover</span><button class="btn btn--ghost is-hover">Browse the store</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Active</span><button class="btn btn--ghost is-active">Browse the store</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Focus</span><button class="btn btn--ghost is-focus">Browse the store</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Disabled</span><button class="btn btn--ghost" disabled>Browse the store</button></div>
+    </div>
+
+    <h3 class="title sg-sub">Quiet &amp; Danger</h3>
+    <div class="matrix">
+      <div class="matrix__cell"><span class="matrix__label">Quiet rest</span><button class="btn btn--quiet">Read more →</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Quiet hover</span><button class="btn btn--quiet is-hover">Read more →</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Danger rest</span><button class="btn btn--danger">Cancel order</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Danger hover</span><button class="btn btn--danger is-hover">Cancel order</button></div>
+      <div class="matrix__cell"><span class="matrix__label">Danger focus</span><button class="btn btn--danger is-focus">Cancel order</button></div>
+    </div>
+
+    <h3 class="title sg-sub">Sizes</h3>
+    <div class="sg-row">
+      <button class="btn btn--primary btn--sm">Small · 32px</button>
+      <button class="btn btn--primary">Default · 40px</button>
+      <button class="btn btn--primary btn--lg">Large · 48px</button>
+    </div>
+    <p class="note" style="margin-top:var(--space-6)">Small is for dense toolbars only — never the sole action on a page, since 32px is below a comfortable touch target.</p>
+  </section>
+
+  <!-- ============ FORMS ============ -->
+  <section class="sg-section" id="forms">
+    <div class="sg-head">
+      <span class="overline">04 — Form elements</span>
+      <h2 class="heading-1">Sunken means editable</h2>
+      <p class="lead">Cards are raised, fields are sunken. That inversion is the whole signal that something accepts input. Labels sit above the field — placeholder text is never the label.</p>
+    </div>
+
+    <div class="sg-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(20rem,100%),1fr))">
+      <div class="sg-stack">
+        <div class="form-row">
+          <label class="label" for="f1">Display name</label>
+          <input class="field" id="f1" placeholder="e.g. Ashvale">
+          <span class="help">Visible on the endgame ladder.</span>
+        </div>
+        <div class="form-row">
+          <label class="label" for="f2">Hover</label>
+          <input class="field is-hover" id="f2" value="Ashvale">
+        </div>
+        <div class="form-row">
+          <label class="label" for="f3">Focus</label>
+          <input class="field is-focus" id="f3" value="Ashvale">
+        </div>
+        <div class="form-row">
+          <label class="label" for="f4">Invalid</label>
+          <input class="field" id="f4" value="ash vale" aria-invalid="true" aria-describedby="f4e">
+          <span class="error" id="f4e">Names cannot contain spaces.</span>
+        </div>
+        <div class="form-row">
+          <label class="label" for="f5">Disabled</label>
+          <input class="field" id="f5" value="Locked until season one" disabled>
+        </div>
+      </div>
+
+      <div class="sg-stack">
+        <div class="form-row">
+          <label class="label" for="f6">Search</label>
+          <div class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input class="field" id="f6" type="search" placeholder="Search the catalog">
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="label" for="f7">Region</label>
+          <select class="field" id="f7">
+            <option>All kingdoms</option>
+            <option>Ashen Reach</option>
+            <option>Verdant Hollow</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label class="label" for="f8">Message</label>
+          <textarea class="field" id="f8" placeholder="Tell the guild what you're looking for"></textarea>
+        </div>
+        <div class="form-row">
+          <span class="label">Options</span>
+          <label class="check"><input type="checkbox" checked><span class="body-sm">Notify me about raid windows</span></label>
+          <label class="check"><input type="checkbox"><span class="body-sm">Show market price alerts</span></label>
+          <label class="check"><input type="checkbox" disabled><span class="body-sm">Beta features</span></label>
+          <label class="check"><input type="radio" name="r" checked><span class="body-sm">Java Edition</span></label>
+          <label class="check"><input type="radio" name="r"><span class="body-sm">Bedrock (coming soon)</span></label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ELEMENTS ============ -->
+  <section class="sg-section" id="elements">
+    <div class="sg-head">
+      <span class="overline">05 — Elements</span>
+      <h2 class="heading-1">Pills, tags, cards, notices</h2>
+    </div>
+
+    <h3 class="title">Filter pills — a toggle, so state goes in <code>aria-pressed</code></h3>
+    <div class="sg-row" style="margin-top:var(--space-4)">
+      <button class="pill" aria-pressed="true">All</button>
+      <button class="pill" aria-pressed="false">Ranks</button>
+      <button class="pill is-hover" aria-pressed="false">Bundles</button>
+      <button class="pill is-focus" aria-pressed="false">Cosmetics</button>
+      <button class="pill" disabled>Seasonal</button>
+    </div>
+
+    <h3 class="title sg-sub">Tags</h3>
+    <div class="sg-row">
+      <span class="tag tag--live">Season zero — live</span>
+      <span class="tag tag--new">New</span>
+      <span class="tag tag--warning">Low stock</span>
+      <span class="tag tag--danger">Sold out</span>
+      <span class="tag tag--info">Java only</span>
+      <span class="tag">Neutral</span>
+    </div>
+
+    <h3 class="title sg-sub">Cards</h3>
+    <div class="sg-grid" style="grid-template-columns:repeat(auto-fit,minmax(min(16rem,100%),1fr))">
+      <article class="card card--interactive">
+        <span class="numeric" style="color:var(--accent-text);font-size:var(--text-sm)">01</span>
+        <h4 class="title">Choose a path</h4>
+        <p class="body-sm">Start a character, pick a discipline, and take your first contract on the frontier.</p>
+      </article>
+      <article class="card card--interactive is-hover">
+        <span class="numeric" style="color:var(--accent-text);font-size:var(--text-sm)">02</span>
+        <h4 class="title">Find your people</h4>
+        <p class="body-sm">Squad up for raid windows, join a guild, and trade on the open emerald market.</p>
+        <span class="caption">← hover state</span>
+      </article>
+      <article class="card">
+        <span class="numeric" style="color:var(--accent-text);font-size:var(--text-sm)">03</span>
+        <h4 class="title">Leave a mark</h4>
+        <p class="body-sm">Chase relics, finish chronicles, and put your name on the endgame ladder.</p>
+      </article>
+    </div>
+    <p class="note" style="margin-top:var(--space-6)">Only cards that are links or contain an action get the hover lift. A static card that rises under the cursor promises something it can't deliver.</p>
+
+    <h3 class="title sg-sub">Notices</h3>
+    <div class="sg-stack">
+      <div class="notice" role="status"><strong class="title">Forum not configured</strong><p class="body-sm">Set <code>DISCOURSE_URL</code> to link the community forum.</p></div>
+      <div class="notice notice--success" role="status"><strong class="title">Purchase delivered</strong><p class="body-sm">Your rank is active. Rejoin the server to see it applied.</p></div>
+      <div class="notice notice--warning"><strong class="title">Market snapshot</strong><p class="body-sm">Prices are a deterministic in-memory snapshot, not a live trading feed.</p></div>
+      <div class="notice notice--danger" role="alert"><strong class="title">Payment failed</strong><p class="body-sm">The transaction was declined. No emeralds were deducted.</p></div>
+    </div>
+  </section>
+
+  <!-- ============ IN SITU ============ -->
+  <section class="sg-section" id="situ">
+    <div class="sg-head">
+      <span class="overline">06 — In situ</span>
+      <h2 class="heading-1">Assembled, on your artwork</h2>
+      <p class="lead">The tokens matter less than what they add up to. Here is the hero and a store row using the real assets and copy.</p>
+    </div>
+
+    <div class="demo-art">
+      <img src="hero-bg.jpg" alt="">
+      <div class="demo-art__scrim"></div>
+      <div class="demo-art__inner">
+        <span class="tag tag--live" style="justify-self:start">Season zero — live</span>
+        <h3 class="display-2">A world worth getting lost in.</h3>
+        <p class="lead">Explore a living Minecraft MMORPG built for discovery, mastery, and community.</p>
+        <div class="sg-row">
+          <span class="ip"><span class="ip__addr">play.azothmc.com</span><button class="btn btn--primary btn--sm">Copy IP</button></span>
+          <a class="btn btn--ghost" href="#situ">Browse the store</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-stack" style="margin-top:var(--space-8)">
+      <div class="product">
+        <div class="product__thumb">👑</div>
+        <div>
+          <div class="sg-row" style="gap:var(--space-3)"><span class="title">Sovereign Rank</span><span class="tag tag--new">New</span></div>
+          <p class="body-sm" style="color:var(--text-tertiary)">Priority queue, cosmetic wardrobe, and a claim on the frontier roads.</p>
+        </div>
+        <div class="price" style="flex-direction:column;align-items:flex-end;gap:2px">
+          <span class="price__save">Save 24%</span>
+          <span class="caption" style="text-decoration:line-through">$39.00</span>
+        </div>
+        <div class="sg-row" style="gap:var(--space-4)">
+          <div class="price"><span class="price__amount">$29.50</span></div>
+          <button class="btn btn--primary">Buy</button>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product__thumb">💠</div>
+        <div>
+          <div class="sg-row" style="gap:var(--space-3)"><span class="title">Emerald Cache</span></div>
+          <p class="body-sm" style="color:var(--text-tertiary)">5,000 emeralds delivered to your vault on next login.</p>
+        </div>
+        <div class="price" style="flex-direction:column;align-items:flex-end;gap:2px">
+          <span class="price__save">Best rate</span>
+          <span class="caption numeric">338 per $1</span>
+        </div>
+        <div class="sg-row" style="gap:var(--space-4)">
+          <div class="price"><span class="price__amount">$14.80</span></div>
+          <button class="btn btn--secondary">Buy</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sg-grid" style="margin-top:var(--space-8);grid-template-columns:repeat(auto-fit,minmax(min(18rem,100%),1fr))">
+      <article class="card card--interactive">
+        <span class="caption numeric">19 AUG 2026</span>
+        <h4 class="heading-3">The frontier is waking</h4>
+        <p class="body-sm">Season zero opens the Ashen Reach, three world bosses, and the first guild campaign ladder.</p>
+        <a href="#situ" style="font-size:var(--text-base);font-weight:600;text-decoration:none">Read the chronicle →</a>
+      </article>
+      <div class="panel">
+        <span class="label">Market</span>
+        <h4 class="heading-3">Emerald rate</h4>
+        <div class="price"><span class="price__amount">338.4</span><span class="price__suffix">/ USD</span></div>
+        <span class="price__save">▲ 12.4% this week</span>
+        <p class="caption">Deterministic snapshot · not a live feed</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:var(--space-16) 0;text-align:center">
+    <p class="caption">AzothMC · "Ironhold" design system · tokens in <code>public/assets/azoth.css</code> · guide in <code>.agents/skills/azothmc-style-guide/</code></p>
+  </footer>
+
+</div>
+
+<script>
+/* Swatch values and contrast ratios are derived from the live tokens so this
+   page cannot drift from azoth.css the way hand-typed hexes did. */
+(function () {
+  var root = getComputedStyle(document.documentElement);
+  var tok = function (n) { return root.getPropertyValue(n).trim(); };
+
+  function rgb(c) {
+    c = c.trim();
+    if (c.charAt(0) === '#') {
+      if (c.length === 4) c = '#' + c[1] + c[1] + c[2] + c[2] + c[3] + c[3];
+      return [1, 3, 5].map(function (i) { return parseInt(c.substr(i, 2), 16); });
+    }
+    var m = c.match(/[\d.]+/g) || [0, 0, 0];
+    return m.slice(0, 3).map(Number);
+  }
+  function lum(c) {
+    return rgb(c).map(function (v) {
+      v /= 255;
+      return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    }).reduce(function (a, v, i) { return a + v * [0.2126, 0.7152, 0.0722][i]; }, 0);
+  }
+  function ratio(a, b) {
+    var x = lum(a), y = lum(b), hi = Math.max(x, y), lo = Math.min(x, y);
+    return ((hi + 0.05) / (lo + 0.05)).toFixed(2);
+  }
+
+  document.querySelectorAll('[data-token]').forEach(function (el) {
+    el.textContent = tok(el.getAttribute('data-token'));
+  });
+  document.querySelectorAll('[data-ratio]').forEach(function (el) {
+    var fg = tok(el.getAttribute('data-ratio'));
+    var bg = tok(el.getAttribute('data-against') || '--surface-base');
+    var note = el.getAttribute('data-note');
+    el.textContent = ratio(fg, bg) + ':1' + (note ? ' \u00b7 ' + note : '');
+  });
+})();
+</script>
+</body>
+</html>

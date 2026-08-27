@@ -1,0 +1,352 @@
+/* AzothMC — alternate themes.
+ *
+ * Load AFTER azoth.css. Each block overrides tokens only; no component
+ * rule is redefined here. Set the theme with `data-theme` on <html>.
+ * Omitting the attribute leaves the shipped "Ironhold" palette in place.
+ *
+ * `html[data-theme="x"]` scores (0,1,1) and beats `:root` (0,1,0), so these
+ * win regardless of source order.
+ *
+ * Every contrast ratio in the comments is measured against that theme's own
+ * --surface-base. Body text clears 4.5:1; disabled controls clear 3:1.
+ */
+
+/* =====================================================================
+   CHRONICLE — warm gold on deep ink, emerald for value, literary serif.
+   The original direction, kept as an alternate after Ironhold was chosen.
+   ===================================================================== */
+
+html[data-theme="chronicle"],
+[data-theme="chronicle"] {
+  --surface-base: #06080e;
+  --surface-sunken: #04060a;
+  --surface-raised: #0b101a;
+  --surface-overlay: #111825;
+  --surface-hover: #17202f;
+
+  --border-subtle: rgba(226, 232, 240, 0.08);
+  --border-default: rgba(226, 232, 240, 0.14);
+  --border-strong: rgba(226, 232, 240, 0.24);
+  --border-focus: #ffdca8;
+
+  --text-primary: #eef2f8;
+  --text-secondary: #b3c0d4;
+  --text-tertiary: #8595ad;
+  --text-disabled: #5b6880;
+  --text-inverse: #0a0d14;
+  --text-link: #ffdca8;
+
+  --accent: #eaa94f;
+  --accent-hover: #f7c67d;
+  --accent-active: #d18b30;
+  --accent-text: #ffdca8;
+  --accent-soft: rgba(234, 169, 79, 0.12);
+  --accent-ring: rgba(234, 169, 79, 0.32);
+
+  --value: #45c98d;
+  --value-soft: rgba(69, 201, 141, 0.12);
+
+  --success: #45c98d;
+  --warning: #f5b544;
+  --danger: #f2645a;
+  --info: #6cb6f5;
+  --success-soft: rgba(69, 201, 141, 0.12);
+  --warning-soft: rgba(245, 181, 68, 0.12);
+  --danger-soft: rgba(242, 100, 90, 0.12);
+  --info-soft: rgba(108, 182, 245, 0.12);
+
+  --wash-soft: rgba(255, 255, 255, 0.07);
+  --wash-faint: rgba(255, 255, 255, 0.04);
+  --wash-line: rgba(255, 255, 255, 0.42);
+  --chip-bg: rgba(17, 24, 37, 0.55);
+  --glow-a: rgba(234, 169, 79, 0.1);
+  --glow-b: rgba(69, 201, 141, 0.06);
+  --glow-accent: 0 10px 26px rgba(234, 169, 79, 0.24);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: "Fraunces", "Fraunces Fallback", Georgia, serif;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --display-transform: none;
+  --heading-weight: 600;
+  --heading-tracking: -0.01em;
+}
+
+/* =====================================================================
+   PARCHMENT — aged paper, oxblood, forest ink.
+   The only light theme. Reads as a manuscript rather than a game UI.
+   ===================================================================== */
+
+html[data-theme="parchment"],
+[data-theme="parchment"] {
+  --surface-base: #f4ece0;
+  --surface-sunken: #ebe0d0;
+  --surface-raised: #fbf6ee;
+  --surface-overlay: #fffdf9;
+  --surface-hover: #e9ddcb;
+
+  --border-subtle: rgba(42, 33, 24, 0.1);
+  --border-default: rgba(42, 33, 24, 0.18);
+  --border-strong: rgba(42, 33, 24, 0.3);
+  --border-focus: #8d1d24;
+
+  --text-primary: #2a2118;   /* 13.48:1 */
+  --text-secondary: #52453a; /*  7.89:1 */
+  --text-tertiary: #6f6154;  /*  5.10:1 */
+  --text-disabled: #8f8171;  /*  3.23:1 */
+  --text-inverse: #fff8f0;   /*  7.04:1 on --accent */
+  --text-link: #8d1d24;
+
+  --accent: #a3232b;         /*  6.33:1 */
+  --accent-hover: #8d1d24;
+  --accent-active: #74151c;
+  --accent-text: #8d1d24;    /*  7.68:1 */
+  --accent-soft: rgba(163, 35, 43, 0.1);
+  --accent-ring: rgba(163, 35, 43, 0.28);
+
+  --value: #1f6b45;          /*  5.52:1 */
+  --value-soft: rgba(31, 107, 69, 0.1);
+
+  --success: #1f6b45;        /*  5.52:1 */
+  --warning: #8a5c07;        /*  4.96:1 */
+  /* The brand accent here is itself oxblood, so danger has to move rather than
+     the other way round: a hotter vermilion 18 deg off, so a destructive button
+     is not the same colour as the primary one. */
+  --danger: #bf360c;         /*  4.78:1 */
+  --info: #1f5b8d;           /*  6.10:1 */
+  --success-soft: rgba(31, 107, 69, 0.1);
+  --warning-soft: rgba(138, 92, 7, 0.12);
+  --danger-soft: rgba(191, 54, 12, 0.1);
+  --info-soft: rgba(31, 91, 141, 0.1);
+
+  /* Washes invert: a light surface darkens on hover, it does not lighten. */
+  --wash-soft: rgba(42, 33, 24, 0.06);
+  --wash-faint: rgba(42, 33, 24, 0.03);
+  --wash-line: rgba(42, 33, 24, 0.4);
+  --chip-bg: rgba(255, 253, 249, 0.75);
+  --glow-a: rgba(163, 35, 43, 0.06);
+  --glow-b: rgba(31, 107, 69, 0.05);
+
+  /* Heavy black shadows look like dirt on paper; keep them soft and warm. */
+  --shadow-xs: 0 1px 2px rgba(74, 58, 42, 0.08);
+  --shadow-sm: 0 2px 8px rgba(74, 58, 42, 0.08);
+  --shadow-md: 0 8px 20px rgba(74, 58, 42, 0.1);
+  --shadow-lg: 0 14px 30px rgba(74, 58, 42, 0.12);
+  --shadow-xl: 0 28px 60px rgba(74, 58, 42, 0.16);
+  --glow-accent: 0 8px 20px rgba(163, 35, 43, 0.2);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: "Cinzel", "Cinzel Fallback", Georgia, serif;
+  --display-transform: none;
+  --display-weight: 700;
+  --display-tracking: 0.01em;
+  --heading-weight: 600;
+  --heading-tracking: 0.01em;
+}
+
+/* =====================================================================
+   AETHERIUM — arcane violet, luminous, cold.
+   High-magic rather than tavern fantasy. Geometric display face.
+   ===================================================================== */
+
+html[data-theme="aetherium"],
+[data-theme="aetherium"] {
+  --surface-base: #0a0714;
+  --surface-sunken: #060410;
+  --surface-raised: #120d22;
+  --surface-overlay: #191231;
+  --surface-hover: #221844;
+
+  --border-subtle: rgba(216, 205, 245, 0.08);
+  --border-default: rgba(216, 205, 245, 0.15);
+  --border-strong: rgba(216, 205, 245, 0.26);
+  --border-focus: #c7aaff;
+
+  --text-primary: #f0ecfa;   /* 17.17:1 */
+  --text-secondary: #bdb3d6; /* 10.05:1 */
+  --text-tertiary: #8d82ab;  /*  5.61:1 */
+  --text-disabled: #6b6186;  /*  3.49:1 */
+  --text-inverse: #0a0714;   /*  6.61:1 on --accent */
+  --text-link: #c7aaff;
+
+  --accent: #a97bff;         /*  6.61:1 */
+  --accent-hover: #bd97ff;
+  --accent-active: #8b5ae6;
+  --accent-text: #c7aaff;    /* 10.08:1 */
+  --accent-soft: rgba(169, 123, 255, 0.14);
+  --accent-ring: rgba(169, 123, 255, 0.34);
+
+  --value: #4fd6e8;          /* 11.50:1 — mana-cyan reads as currency here */
+  --value-soft: rgba(79, 214, 232, 0.12);
+
+  --success: #4fd6a0;
+  --warning: #f0b840;
+  --danger: #ff6b7a;
+  --info: #7cb8ff;
+  --success-soft: rgba(79, 214, 160, 0.12);
+  --warning-soft: rgba(240, 184, 64, 0.12);
+  --danger-soft: rgba(255, 107, 122, 0.12);
+  --info-soft: rgba(124, 184, 255, 0.12);
+
+  --wash-soft: rgba(216, 205, 245, 0.08);
+  --wash-faint: rgba(216, 205, 245, 0.04);
+  --wash-line: rgba(216, 205, 245, 0.45);
+  --chip-bg: rgba(25, 18, 49, 0.6);
+  --glow-a: rgba(169, 123, 255, 0.14);
+  --glow-b: rgba(79, 214, 232, 0.08);
+  --glow-accent: 0 10px 30px rgba(169, 123, 255, 0.32);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --font-display: "Space Grotesk", "Space Grotesk Fallback", sans-serif;
+  --display-transform: none;
+  --display-weight: 700;
+  --display-tracking: -0.03em;
+  --heading-weight: 600;
+  --heading-tracking: -0.02em;
+}
+
+/* =====================================================================
+   IRONHOLD — the shipped theme, restated so it can be named explicitly.
+   :root in azoth.css already supplies these values; this block is only for
+   scoping a subtree back to Ironhold while another theme is on <html>.
+   Keep it in sync with :root.
+   ===================================================================== */
+
+html[data-theme="ironhold"],
+[data-theme="ironhold"] {
+  --surface-base: #0e0f11;
+  --surface-sunken: #08090a;
+  --surface-raised: #16181b;
+  --surface-overlay: #1d2024;
+  --surface-hover: #262a2f;
+
+  --border-subtle: rgba(226, 232, 240, 0.08);
+  --border-default: rgba(226, 232, 240, 0.16);
+  --border-strong: rgba(226, 232, 240, 0.28);
+  --border-focus: #ff8a5c;
+
+  --text-primary: #eceef0;   /* 16.49:1 */
+  --text-secondary: #b0b6bc; /*  9.37:1 */
+  --text-tertiary: #838a92;  /*  5.49:1 */
+  --text-disabled: #5a6169;  /*  3.06:1 */
+  --text-inverse: #0e0f11;   /*  5.05:1 on --accent */
+  --text-link: #ff8a5c;
+
+  --accent: #e0562a;         /*  5.05:1 */
+  --accent-hover: #f06a3d;
+  --accent-active: #b8431f;
+  --accent-text: #ff8a5c;    /*  8.26:1 */
+  --accent-soft: rgba(224, 86, 42, 0.14);
+  --accent-ring: rgba(224, 86, 42, 0.34);
+
+  --value: #d9a441;          /*  8.53:1 — brass, not green */
+  --value-soft: rgba(217, 164, 65, 0.12);
+
+  --success: #5cc98d;        /*  9.31:1 */
+  --warning: #ffd23f;        /* 13.28:1 */
+  --danger: #f2555f;         /*  5.70:1 — crimson, off-hue from the accent */
+  --info: #6ba8d8;           /*  7.50:1 */
+  --success-soft: rgba(92, 201, 141, 0.12);
+  --warning-soft: rgba(255, 210, 63, 0.12);
+  --danger-soft: rgba(242, 85, 95, 0.12);
+  --info-soft: rgba(107, 168, 216, 0.12);
+
+  --wash-soft: rgba(226, 232, 240, 0.07);
+  --wash-faint: rgba(226, 232, 240, 0.04);
+  --wash-line: rgba(226, 232, 240, 0.44);
+  --chip-bg: rgba(29, 32, 36, 0.6);
+  --glow-a: rgba(224, 86, 42, 0.1);
+  --glow-b: rgba(226, 232, 240, 0.04);
+  --glow-accent: 0 10px 26px rgba(224, 86, 42, 0.28);
+
+  /* Squarer geometry suits the industrial read. */
+  --radius-sm: 2px;
+  --radius-md: 3px;
+  --radius-lg: 4px;
+  --radius-xl: 6px;
+
+  --font-display: "Oswald", "Oswald Fallback", "Arial Narrow", sans-serif;
+  --display-weight: 600;
+  --display-tracking: 0.01em;
+  --display-transform: uppercase;
+  --heading-weight: 500;
+  --heading-tracking: 0.02em;
+}
+
+/* =====================================================================
+   VERDANCE — deep forest and lantern amber.
+   Same warm serif as Chronicle; the palette does all the work.
+   ===================================================================== */
+
+html[data-theme="verdance"],
+[data-theme="verdance"] {
+  --surface-base: #0b1310;
+  --surface-sunken: #060d0a;
+  --surface-raised: #101c17;
+  --surface-overlay: #16261f;
+  --surface-hover: #1d3228;
+
+  --border-subtle: rgba(214, 236, 222, 0.08);
+  --border-default: rgba(214, 236, 222, 0.15);
+  --border-strong: rgba(214, 236, 222, 0.26);
+  --border-focus: #f2c374;
+
+  --text-primary: #eaf2ec;   /* 16.51:1 */
+  --text-secondary: #b2c6b8; /* 10.46:1 */
+  --text-tertiary: #83988a;  /*  6.12:1 */
+  --text-disabled: #5a6d61;  /*  3.40:1 */
+  --text-inverse: #0b1310;   /*  8.73:1 on --accent */
+  --text-link: #f2c374;
+
+  --accent: #e8a33d;         /*  8.73:1 */
+  --accent-hover: #f5b855;
+  --accent-active: #c8862a;
+  --accent-text: #f2c374;    /* 11.51:1 */
+  --accent-soft: rgba(232, 163, 61, 0.13);
+  --accent-ring: rgba(232, 163, 61, 0.32);
+
+  --value: #5fd18b;          /*  9.85:1 */
+  --value-soft: rgba(95, 209, 139, 0.12);
+
+  --success: #5fd18b;
+  --warning: #e8a33d;
+  --danger: #f2705f;
+  --info: #6cc0d8;
+  --success-soft: rgba(95, 209, 139, 0.12);
+  --warning-soft: rgba(232, 163, 61, 0.12);
+  --danger-soft: rgba(242, 112, 95, 0.12);
+  --info-soft: rgba(108, 192, 216, 0.12);
+
+  --wash-soft: rgba(214, 236, 222, 0.07);
+  --wash-faint: rgba(214, 236, 222, 0.04);
+  --wash-line: rgba(214, 236, 222, 0.44);
+  --chip-bg: rgba(22, 38, 31, 0.6);
+  --glow-a: rgba(232, 163, 61, 0.1);
+  --glow-b: rgba(95, 209, 139, 0.07);
+  --glow-accent: 0 10px 26px rgba(232, 163, 61, 0.26);
+  --font-display: "Fraunces", "Fraunces Fallback", Georgia, serif;
+  --display-transform: none;
+  --display-weight: 600;
+  --display-tracking: -0.02em;
+  --heading-weight: 600;
+  --heading-tracking: -0.01em;
+
+
+  /* Softer geometry to match the organic palette. */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+}

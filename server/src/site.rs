@@ -241,8 +241,10 @@ pub async fn static_file(Path(path): Path<String>) -> Response {
 
 fn content_type(path: &FsPath) -> HeaderValue {
     let value = match path.extension().and_then(|ext| ext.to_str()) {
+        Some("html") => "text/html; charset=utf-8",
         Some("css") => "text/css; charset=utf-8",
         Some("js") => "text/javascript; charset=utf-8",
+        Some("woff2") => "font/woff2",
         Some("svg") => "image/svg+xml",
         Some("png") => "image/png",
         Some("jpg") | Some("jpeg") => "image/jpeg",
@@ -278,6 +280,42 @@ mod tests {
             content_type(FsPath::new("styles.css")),
             "text/css; charset=utf-8"
         );
+    }
+
+    #[test]
+    fn style_guide_and_fonts_are_served_with_their_own_types() {
+        assert_eq!(
+            content_type(FsPath::new("styleguide.html")),
+            "text/html; charset=utf-8"
+        );
+        assert_eq!(
+            content_type(FsPath::new("fonts/inter-latin-var.woff2")),
+            "font/woff2"
+        );
+    }
+
+    /// The style guide is reachable only because it lives under the asset root.
+    /// Every file it pulls in must sit beside it, or the page renders unstyled.
+    #[test]
+    fn style_guide_and_its_dependencies_exist_on_disk() {
+        let root = FsPath::new("../public/assets");
+        for name in [
+            "styleguide.html",
+            "themes.html",
+            "azoth.css",
+            "themes.css",
+            "hero-bg.jpg",
+            "fonts/fonts.css",
+            "fonts/fraunces-latin-var.woff2",
+            "fonts/inter-latin-var.woff2",
+            "fonts/jetbrains-mono-latin-var.woff2",
+            "fonts/cinzel-latin-var.woff2",
+            "fonts/oswald-latin-var.woff2",
+            "fonts/space-grotesk-latin-var.woff2",
+        ] {
+            let resolved = resolve_asset(root, name).expect("must resolve under the asset root");
+            assert!(resolved.is_file(), "missing style guide dependency: {name}");
+        }
     }
 
     #[test]

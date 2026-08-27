@@ -1,0 +1,1 @@
+Implement Rust landing renderer in server/src/site.rs and register GET / in server/src/main.rs. Preserve /healthz and /api/v1 routes. Add focused Axum tests for status, HTML content type, AzothMC, play.azothmc.com, /store, /news, /forum, and section IDs hero intro world loot quests endgame. Do not modify frontend files. Skip formatters, linters, and project-wide suites.
